@@ -1,0 +1,44 @@
+@import "./variables.scss";
+
+.sticky-header {
+  position: sticky;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+}
+
+.app-header {
+  @extend .sticky-header;
+
+  top: 0px;
+  height: $header-height;
+  background: $primary;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0, 0.5);
+
+  .search-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: auto;
+    border-bottom: 3px solid white;
+
+    img {
+      width: 30px;
+      height: 30px;
+      background-image: url("../assets/icons/magnifier.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+  }
+  
+}
+
+.app-sub-header {
+  @extend .sticky-header;
+
+  top: $header-height;
+  height: $sub-header-height;
+  background: white;
+}
