@@ -23,14 +23,6 @@
     justify-content: flex-end;
     margin-top: auto;
     border-bottom: 3px solid white;
-
-    img {
-      width: 30px;
-      height: 30px;
-      background-image: url("../assets/icons/magnifier.png");
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
   }
   
 }
@@ -38,7 +30,22 @@
 .app-sub-header {
   @extend .sticky-header;
 
+  display: flex;
+  justify-content: space-between;
   top: $header-height;
   height: $sub-header-height;
   background: white;
+}
+
+.content {
+  height: 300vh;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  
+  section {
+    padding: 20px 80px;
+  }
 }

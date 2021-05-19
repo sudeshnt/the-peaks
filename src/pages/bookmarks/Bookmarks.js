@@ -1,19 +1,21 @@
 import styled from 'styled-components';
+import SubHeader from '../../components/common/sub-header/SubHeader';
 
 const Bookmarks = () => {
 
   return (
-    <Styled.Container>
-      Bookmarks
-    </Styled.Container>
+    <div className="page-content">
+      <SubHeader title={'All Bookmarks'}/>
+      <section>
+        Bookmarks
+      </section>
+    </div>
   )
 }
 
 const Styled = {
   Container: styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
   `
 }
 

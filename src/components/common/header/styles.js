@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { desaturate } from 'polished';
 
-const Logo = () => (
-  <div className="logo">
-    <span>The</span>
-    <span>Peaks</span>
-  </div>
-);
-
 export const SearchButton = styled.a`
   &:hover {
     /* background: white; */
@@ -17,16 +10,14 @@ export const SearchButton = styled.a`
   background: transparent;
 `;
 
-export const SearchInput = styled.div.attrs(() => ({
-  placeholder: 'Search all news'
-}))`
-  background-color: ${desaturate(0.3, '#09357B')};
+export const SearchInput = styled.div`
+  background-color: ${desaturate(0.2, '#09357B')};
 
   & input {
     padding: 8px 15px;
     width: 200px;
     box-sizing: border-box;
-    background: transparent;
+    background-color: ${desaturate(0.2, '#09357B')};
     border: 0;
     outline: none;
     color: white;
@@ -34,9 +25,19 @@ export const SearchInput = styled.div.attrs(() => ({
   }
 `;
 
-export const StyledLogo = styled(Logo)`
+export const StyledLogo = styled.div`
   cursor: pointer;
-  &:logo {
-    background: white;
+  color: white;
+  font-weight: 600;
+
+  & span:first-child {
+    position: relative;
+    top: -20px;
+    left: 42px;
+    font-size: small;
+  }
+
+  & span:last-child {
+    font-size: xx-large;
   }
 `;

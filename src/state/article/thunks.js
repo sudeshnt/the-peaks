@@ -1,22 +1,30 @@
 import { 
-  fetchProductsInProgress,
-  fetchProductsSuccess,
-  fetchProductsFailure,
-  fetchMaterialsSuccess,
+  fetchTopNewsInProgress,
+  fetchTopNewsSuccess,
+  fetchTopNewsFailure,
+  fetchSportsNewsInProgress,
+  fetchSportsNewsSuccess,
+  fetchSportsNewsFailure
 } from "./actions";
-import * as productsApi from "../../api/products";
+import * as newsApi from "../../api/news";
 
-export const fetchProducts = _ => async dispatch => {
+export const fetchTopNews = _ => async dispatch => {
   try {
-    dispatch(fetchProductsInProgress());
-    const response = await productsApi.fetchProducts();
-    const products = response?.data?.data ?? [];
-    const materials = [
-      ...new Set(products.map(product => product.material))
-    ];
-    dispatch(fetchProductsSuccess(products))
-    dispatch(fetchMaterialsSuccess(materials))
+    dispatch(fetchTopNewsInProgress());
+    const response = await newsApi.fetchSection('news', 100);
+    dispatch(fetchTopNewsSuccess(response?.data?.response?.results))
   } catch(e) {
-    dispatch(fetchProductsFailure(e))
+    dispatch(fetchTopNewsFailure(e))
+  }
+}
+
+
+export const fetchSportsNews = _ => async dispatch => {
+  try {
+    dispatch(fetchSportsNewsInProgress());
+    const response = await newsApi.fetchSection('sport', 100);
+    dispatch(fetchSportsNewsSuccess(response?.data?.response?.results))
+  } catch(e) {
+    dispatch(fetchSportsNewsFailure(e))
   }
 }

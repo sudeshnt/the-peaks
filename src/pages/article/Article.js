@@ -3,17 +3,16 @@ import styled from 'styled-components';
 const Article = () => {
 
   return (
-    <Styled.Container>
-      Article
-    </Styled.Container>
+    <div className="page-content">
+      <section>
+        Article
+      </section>
+    </div>
   )
 }
 
 const Styled = {
   Container: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
   `
 }
 
