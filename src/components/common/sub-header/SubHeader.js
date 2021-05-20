@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BookMarksButton, RightContainer } from "./styles"
-import { faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { RightContainer } from "./styles"
 import { useHistory, useLocation } from 'react-router'
 import URLS from '../../../config/urls'
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import Button from "../button/Button";
 
 const SubHeader = ({
   title
@@ -20,10 +20,10 @@ const SubHeader = ({
       <RightContainer>
         {
           location.pathname !== URLS.BOOKMARKS &&
-          <BookMarksButton className="btn" onClick={onClickBookmarksButton}>
-            <FontAwesomeIcon icon={faBookmark} color="white" />
-            <span>view bookmark</span>
-          </BookMarksButton>
+          <Button 
+            title='view bookmarks'
+            icon={faBookmark}
+            onClick={onClickBookmarksButton} />
         }
         <select defaultValue="Apples">
           <option>Newest First</option>

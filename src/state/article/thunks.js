@@ -2,29 +2,48 @@ import {
   fetchTopNewsInProgress,
   fetchTopNewsSuccess,
   fetchTopNewsFailure,
-  fetchSportsNewsInProgress,
-  fetchSportsNewsSuccess,
-  fetchSportsNewsFailure
+  fetchSectionNewsInProgress,
+  fetchSectionNewsSuccess,
+  fetchSectionNewsFailure,
+  searchNewsInProgress,
+  searchNewsSuccess,
+  searchNewsFailure
 } from "./actions";
 import * as newsApi from "../../api/news";
 
 export const fetchTopNews = _ => async dispatch => {
   try {
     dispatch(fetchTopNewsInProgress());
-    const response = await newsApi.fetchSection('news', 100);
+    const response = await newsApi.fetchSection('news', 8);
     dispatch(fetchTopNewsSuccess(response?.data?.response?.results))
   } catch(e) {
     dispatch(fetchTopNewsFailure(e))
   }
 }
 
-
-export const fetchSportsNews = _ => async dispatch => {
+export const fetchSectionNews = _ => async dispatch => {
   try {
-    dispatch(fetchSportsNewsInProgress());
-    const response = await newsApi.fetchSection('sport', 100);
-    dispatch(fetchSportsNewsSuccess(response?.data?.response?.results))
+    dispatch(fetchSectionNewsInProgress());
+    const sportNews = await newsApi.fetchSection('sport', 6);
+    const cultureNews = await newsApi.fetchSection('culture', 6);
+    const lifeStyleNews = await newsApi.fetchSection('lifeandstyle', 6);
+    dispatch(fetchSectionNewsSuccess({
+      sportNews: sportNews?.data?.response,
+      cultureNews: cultureNews?.data?.response,
+      lifeStyleNews: lifeStyleNews?.data?.response
+    }))
   } catch(e) {
-    dispatch(fetchSportsNewsFailure(e))
+    dispatch(fetchSectionNewsFailure(e))
   }
 }
+
+export const searchNews = (query, pagination) => async dispatch => {
+  try {
+    dispatch(searchNewsInProgress());
+    const response = await newsApi.searchNews(query, 15);
+    dispatch(searchNewsSuccess(response?.data?.response?.results))
+  } catch(e) {
+    dispatch(searchNewsFailure(e))
+  }
+}
+

@@ -1,7 +1,7 @@
 const URLS = {
   HOME: '/home',
   SEARCH: '/search',
-  ARTICLE: '/article/:articleId',
+  ARTICLE: '/article',
   BOOKMARKS: '/bookmarks'
 }
 

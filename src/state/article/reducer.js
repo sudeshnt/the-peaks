@@ -2,9 +2,9 @@ import {
   FETCH_TOP_NEWS_IN_PROGRESS,
   FETCH_TOP_NEWS_SUCCESS,
   FETCH_TOP_NEWS_ERROR,
-  FETCH_SPORTS_NEWS_IN_PROGRESS,
-  FETCH_SPORTS_NEWS_SUCCESS,
-  FETCH_SPORTS_NEWS_ERROR,
+  FETCH_SECTION_NEWS_IN_PROGRESS,
+  FETCH_SECTION_NEWS_SUCCESS,
+  FETCH_SECTION_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
   SEARCH_NEWS_ERROR
@@ -13,8 +13,8 @@ import {
 const initialState = {
   topNews: [],
   topNewsLoading: false,
-  sportsNews: [],
-  sportsNewsLoading: false,
+  sectionNews: {},
+  sectionNewsLoading: false,
   searchedNews: [],
   loading: false,
   error: null
@@ -30,10 +30,10 @@ const ArticleReducer = (state = initialState, action) => {
         topNewsLoading: true,
         error: null
       };
-    case FETCH_SPORTS_NEWS_IN_PROGRESS:
+    case FETCH_SECTION_NEWS_IN_PROGRESS:
       return {
         ...state,
-        sportsNewsLoading: true,
+        sectionNewsLoading: true,
         error: null
       };
     case SEARCH_NEWS_IN_PROGRESS:
@@ -48,11 +48,11 @@ const ArticleReducer = (state = initialState, action) => {
         topNewsLoading: false,
         topNews: payload
       }
-    case FETCH_SPORTS_NEWS_SUCCESS:
+    case FETCH_SECTION_NEWS_SUCCESS:
       return {
         ...state,
-        sportsNewsLoading: false,
-        sportsNews: payload
+        sectionNewsLoading: false,
+        sectionNews: payload
       }
     case SEARCH_NEWS_SUCCESS:
       return {
@@ -61,7 +61,7 @@ const ArticleReducer = (state = initialState, action) => {
         items: payload
       }
     case FETCH_TOP_NEWS_ERROR:
-    case FETCH_SPORTS_NEWS_ERROR:
+    case FETCH_SECTION_NEWS_ERROR:
     case SEARCH_NEWS_ERROR:
       return {
         ...state,

@@ -38,7 +38,6 @@
 }
 
 .content {
-  height: 300vh;
 }
 
 .page-content {
@@ -46,6 +45,12 @@
   flex-direction: column;
   
   section {
+    display: flex;
+    flex-wrap: wrap;
     padding: 20px 80px;
   }
+}
+
+.divider {
+  
 }

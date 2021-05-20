@@ -46,4 +46,16 @@ export const SportsSection = styled.div`
       }
     }
   }}
+
+  .section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+
+    .article-container {
+      flex: 1 0 300px;
+      padding: 10px;
+      height: 300px;
+    }
+  }
 `;

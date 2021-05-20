@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Article from '../../components/article/Article';
 import Loader from '../../components/common/loader/Loader';
 import SubHeader from '../../components/common/sub-header/SubHeader';
-import { fetchTopNews, fetchSportsNews } from '../../state/article/thunks';
+import { fetchTopNews, fetchSectionNews } from '../../state/article/thunks';
 import { TopStoriesSection, SportsSection } from './styles';
 
 const Home = () => {
@@ -11,13 +11,13 @@ const Home = () => {
   const {
     topNewsLoading,
     topNews,
-    sportsNewsLoading,
-    sportsNews
+    sectionNewsLoading,
+    sectionNews
   } = useSelector(state => state.article)
 
   useEffect(() => {
     dispatch(fetchTopNews())
-    dispatch(fetchSportsNews())
+    dispatch(fetchSectionNews())
   }, [dispatch])
 
   return (
@@ -29,23 +29,35 @@ const Home = () => {
             topNewsLoading ? <Loader /> : 
               <>
                 <div className="column left">
-                  <Article />
+                  <Article article={topNews?.[0]}/>
                 </div>
                 <div className="column right">
                   <div className="column">
-                    <Article />
+                    <Article article={topNews?.[1]}/>
                   </div>
                   <div className="column">
-                    <Article />
+                    <Article article={topNews?.[2]}/>
                   </div>
                 </div>
               </>
             }
         </TopStoriesSection>
-        <h2>Sports</h2>
-        <SportsSection loading={sportsNewsLoading ? 1 : 0}>
+        <SportsSection loading={sectionNewsLoading ? 1 : 0}>
           {
-            sportsNewsLoading ? <Loader/> : <></>
+            sectionNewsLoading ? <Loader/> : Object.entries(sectionNews).map(([ title, entry]) => (
+              <div>
+                <h2>{entry.section.webTitle}</h2>
+                <div className="section">
+                  {
+                    entry.results.map(article => (
+                      <div className="article-container">
+                        <Article article={article}/>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            ))
           }
         </SportsSection>
       </section>

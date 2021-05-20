@@ -1,16 +1,22 @@
 import styled from "styled-components";
 import { rgba } from 'polished';
+import { ArticleTypes } from "../../config/shared";
 
 const Styled = {
   ArticleContainer: styled.div`
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 100%;
     box-shadow: 0 3px 5px 0 rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     color: white;
     border-bottom: 2px solid chocolate;
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 0.9
+    }
   `,
   ArticleImage: styled.img`
     width: 100%;
@@ -36,20 +42,27 @@ const Styled = {
   `
 }
 
-const Article = () => {
+const Article = ({
+  type,
+  article
+}) => {
 
   const { ArticleContainer, ArticleImage, ArticleBody, ArticleTitle, ArticleDescription } = Styled;
 
   return (
     <ArticleContainer className="article">
-      <ArticleImage src={'https://source.unsplash.com/random'}  alt="" />
+      <ArticleImage src={article?.fields?.thumbnail}  alt="" />
       <ArticleBody>
         <ArticleTitle>
-          Global report: WHO warns of accelerating Covid-19 infections in Africa
+          {article?.webTitle}
         </ArticleTitle>
-        <ArticleDescription>
-          Continent is seeing more cases spread to the provinces; Trump supporters can’t sue over catching Covid-19 at rallies; Brazil confirms 30,000 new cases
-        </ArticleDescription>
+        {
+          type === ArticleTypes.WITH_TITLE_THUMBNAIL_AND_DESCRIPTION && <ArticleDescription>
+            <div dangerouslySetInnerHTML={{
+              __html: article?.fields?.headline
+            }} />
+          </ArticleDescription>
+        }
       </ArticleBody>
     </ArticleContainer>
   )

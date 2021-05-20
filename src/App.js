@@ -1,10 +1,10 @@
 import Header from './components/common/header/Header';
 import './App.scss';
-import Article from './components/article/Article';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Search from './pages/search/Search';
 import Bookmarks from './pages/bookmarks/Bookmarks';
+import Article from './pages/article/Article';
 import URLS from './config/urls';
 
 function App() {
@@ -20,14 +20,17 @@ function App() {
               <Route path={URLS.SEARCH}>
                 <Search />
               </Route>
-              <Route path={URLS.ARTICLE}>
+              <Route path={`${URLS.ARTICLE}/:articleId`}>
                 <Article />
               </Route>
-              <Route path={URLS.Bookmarks}>
+              <Route path={URLS.BOOKMARKS}>
                 <Bookmarks />
               </Route>
               <Route path="/">
-                <div>Page Not Found</div>
+                <Redirect to={URLS.HOME} />
+              </Route>
+              <Route path="*">
+                Page Not Found
               </Route>
             </Switch>
           </div>
