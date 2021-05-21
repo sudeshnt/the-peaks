@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
   display: inline-block;
@@ -38,17 +38,15 @@ const LoaderContainer = styled.div`
       animation-delay: -0.15s;
     }
   }
-`
+`;
 
-const Loader = () => {
-  return (
-    <LoaderContainer>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </LoaderContainer>
-  )
-}
+const Loader = () => (
+  <LoaderContainer>
+    <div />
+    <div />
+    <div />
+    <div />
+  </LoaderContainer>
+);
 
 export default Loader;

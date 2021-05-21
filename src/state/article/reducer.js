@@ -7,8 +7,8 @@ import {
   FETCH_SECTION_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
-  SEARCH_NEWS_ERROR
-} from './types'
+  SEARCH_NEWS_ERROR,
+} from './types';
 
 const initialState = {
   topNews: [],
@@ -17,60 +17,61 @@ const initialState = {
   sectionNewsLoading: false,
   searchedNews: [],
   loading: false,
-  error: null
-}
+  error: null,
+};
 
 const ArticleReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case FETCH_TOP_NEWS_IN_PROGRESS:
       return {
         ...state,
         topNewsLoading: true,
-        error: null
+        error: null,
       };
     case FETCH_SECTION_NEWS_IN_PROGRESS:
       return {
         ...state,
         sectionNewsLoading: true,
-        error: null
+        error: null,
       };
     case SEARCH_NEWS_IN_PROGRESS:
       return {
         ...state,
         loading: true,
-        error: null
+        items: [],
+        error: null,
       };
     case FETCH_TOP_NEWS_SUCCESS:
       return {
         ...state,
         topNewsLoading: false,
-        topNews: payload
-      }
+        topNews: payload,
+      };
     case FETCH_SECTION_NEWS_SUCCESS:
       return {
         ...state,
         sectionNewsLoading: false,
-        sectionNews: payload
-      }
+        sectionNews: payload,
+      };
     case SEARCH_NEWS_SUCCESS:
       return {
         ...state,
-        searchedNews: false,
-        items: payload
-      }
+        loading: false,
+        items: payload,
+      };
     case FETCH_TOP_NEWS_ERROR:
     case FETCH_SECTION_NEWS_ERROR:
     case SEARCH_NEWS_ERROR:
       return {
         ...state,
         loading: false,
-        error: payload
-      }
+        error: payload,
+      };
     default:
       return state;
   }
-}
+};
 
 export default ArticleReducer;

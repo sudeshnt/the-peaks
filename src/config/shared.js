@@ -2,4 +2,8 @@ export const ArticleTypes = Object.freeze({
   WITH_TITLE: 'WITH_TITLE',
   WITH_TITLE_AND_THUMBNAIL: 'WITH_TITLE_AND_THUMBNAIL',
   WITH_TITLE_THUMBNAIL_AND_DESCRIPTION: 'WITH_TITLE_THUMBNAIL_AND_DESCRIPTION',
-})
+});
+
+export const StorageKeys = Object.freeze({
+  BOOKMARKS: 'BOOKMARKS',
+});

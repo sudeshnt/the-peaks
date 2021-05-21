@@ -1,64 +1,70 @@
 import { useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router';
-import queryString from "query-string"
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import SubHeader from '../../components/common/sub-header/SubHeader';
 import { searchNews } from '../../state/article/thunks';
-import { useDispatch, useSelector } from 'react-redux';
 import Article from '../../components/article/Article';
-import styled from 'styled-components';
 import { ArticleTypes } from '../../config/shared';
-import URLS from '../../config/urls';
+import Loader from '../../components/common/loader/Loader';
 
 const Search = () => {
   const location = useLocation();
-  const history = useHistory();
   const dispatch = useDispatch();
   const {
     items: news,
-    loading
-  } = useSelector(state => state.article)
+    loading,
+  } = useSelector((state) => state.article);
 
-  const { NewsContainer } = Styled;
+  const { NewsContainer, ArticleContainer } = Styled;
 
-  useEffect(_ => {
+  useEffect(() => {
     const { q } = queryString.parse(location.search);
     if (q) {
-      search(q)
+      search(q);
     }
-  }, [ location.search ])
+  }, [location.search]);
 
-  const search = query => {
-    dispatch(searchNews(query))
-  }
-
-  const articleDetails = articleId => {
-    history.push(`${URLS.ARTICLE}/${encodeURIComponent(articleId)}`)
-  }
+  const search = (query) => {
+    dispatch(searchNews(query));
+  };
 
   return (
     <div className="page-content">
-      <SubHeader title={'Search Results'}/>
+      <SubHeader title="Search Results" />
       <section>
-        {
-          news?.map(article => (
-            <NewsContainer key={article.id} onClick={() => articleDetails(article.id)}>
-              <Article 
-                type={ArticleTypes.WITH_TITLE_AND_THUMBNAIL}
-                article={article} />
-            </NewsContainer>
-          ))
-        }
+        { loading && <Loader /> }
+        <NewsContainer>
+          {
+            news?.map((article) => (
+              <ArticleContainer key={article.id}>
+                <Article
+                  type={ArticleTypes.WITH_TITLE_AND_THUMBNAIL}
+                  article={article}
+                />
+              </ArticleContainer>
+            ))
+          }
+        </NewsContainer>
+
       </section>
     </div>
-  )
-}
+  );
+};
 
 const Styled = {
   NewsContainer: styled.div`
-    flex: 1 0 300px;
+    display:flex;
+    flex-wrap: wrap;
+    width: auto;
+  `,
+  ArticleContainer: styled.div`
+    flex: 1 0 350px;
     padding: 10px;
-    height: 300px; 
-  `
-}
+    height: 350px;
+    max-width: 350px;
+  `,
+};
 
 export default Search;

@@ -7,51 +7,59 @@ import { fetchTopNews, fetchSectionNews } from '../../state/article/thunks';
 import { TopStoriesSection, SportsSection } from './styles';
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     topNewsLoading,
     topNews,
     sectionNewsLoading,
-    sectionNews
-  } = useSelector(state => state.article)
+    sectionNews,
+  } = useSelector((state) => state.article);
 
   useEffect(() => {
-    dispatch(fetchTopNews())
-    dispatch(fetchSectionNews())
-  }, [dispatch])
+    dispatch(fetchTopNews());
+    dispatch(fetchSectionNews());
+  }, [dispatch]);
 
   return (
     <div className="page-content">
-      <SubHeader title={'Top Stories'}/>
+      <SubHeader title="Top Stories" />
       <section>
         <TopStoriesSection loading={topNewsLoading ? 1 : 0}>
           {
-            topNewsLoading ? <Loader /> : 
-              <>
-                <div className="column left">
-                  <Article article={topNews?.[0]}/>
-                </div>
-                <div className="column right">
-                  <div className="column">
-                    <Article article={topNews?.[1]}/>
+            topNewsLoading ? <Loader />
+              : (
+                <>
+                  <div className="column left">
+                    <Article article={topNews?.[0]} />
                   </div>
-                  <div className="column">
-                    <Article article={topNews?.[2]}/>
+                  <div className="column right">
+                    <div className="column">
+                      <Article article={topNews?.[1]} />
+                    </div>
+                    <div className="column">
+                      <Article article={topNews?.[2]} />
+                    </div>
+                    <div className="column">
+                      <Article article={topNews?.[3]} />
+                    </div>
+                    <div className="column">
+                      <Article article={topNews?.[4]} />
+                    </div>
                   </div>
-                </div>
-              </>
+                </>
+              )
             }
         </TopStoriesSection>
         <SportsSection loading={sectionNewsLoading ? 1 : 0}>
           {
-            sectionNewsLoading ? <Loader/> : Object.entries(sectionNews).map(([ title, entry]) => (
-              <div>
+            sectionNewsLoading ? <Loader /> : Object.entries(sectionNews).map(([title, entry]) => (
+              <div key={title}>
                 <h2>{entry.section.webTitle}</h2>
                 <div className="section">
                   {
-                    entry.results.map(article => (
+                    entry.results.map((article) => (
                       <div className="article-container">
-                        <Article article={article}/>
+                        <Article article={article} />
                       </div>
                     ))
                   }
@@ -62,7 +70,7 @@ const Home = () => {
         </SportsSection>
       </section>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

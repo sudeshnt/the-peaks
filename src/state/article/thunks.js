@@ -1,4 +1,4 @@
-import { 
+import {
   fetchTopNewsInProgress,
   fetchTopNewsSuccess,
   fetchTopNewsFailure,
@@ -7,21 +7,21 @@ import {
   fetchSectionNewsFailure,
   searchNewsInProgress,
   searchNewsSuccess,
-  searchNewsFailure
-} from "./actions";
-import * as newsApi from "../../api/news";
+  searchNewsFailure,
+} from './actions';
+import * as newsApi from '../../api/news';
 
-export const fetchTopNews = _ => async dispatch => {
+export const fetchTopNews = () => async (dispatch) => {
   try {
     dispatch(fetchTopNewsInProgress());
     const response = await newsApi.fetchSection('news', 8);
-    dispatch(fetchTopNewsSuccess(response?.data?.response?.results))
-  } catch(e) {
-    dispatch(fetchTopNewsFailure(e))
+    dispatch(fetchTopNewsSuccess(response?.data?.response?.results));
+  } catch (e) {
+    dispatch(fetchTopNewsFailure(e));
   }
-}
+};
 
-export const fetchSectionNews = _ => async dispatch => {
+export const fetchSectionNews = () => async (dispatch) => {
   try {
     dispatch(fetchSectionNewsInProgress());
     const sportNews = await newsApi.fetchSection('sport', 6);
@@ -30,20 +30,21 @@ export const fetchSectionNews = _ => async dispatch => {
     dispatch(fetchSectionNewsSuccess({
       sportNews: sportNews?.data?.response,
       cultureNews: cultureNews?.data?.response,
-      lifeStyleNews: lifeStyleNews?.data?.response
-    }))
-  } catch(e) {
-    dispatch(fetchSectionNewsFailure(e))
+      lifeStyleNews: lifeStyleNews?.data?.response,
+    }));
+  } catch (e) {
+    dispatch(fetchSectionNewsFailure(e));
   }
-}
+};
 
-export const searchNews = (query, pagination) => async dispatch => {
+export const searchNews = (query, pagination) => async (dispatch) => {
+  // eslint-disable-next-line
+  console.log(pagination);
   try {
     dispatch(searchNewsInProgress());
     const response = await newsApi.searchNews(query, 15);
-    dispatch(searchNewsSuccess(response?.data?.response?.results))
-  } catch(e) {
-    dispatch(searchNewsFailure(e))
+    dispatch(searchNewsSuccess(response?.data?.response?.results));
+  } catch (e) {
+    dispatch(searchNewsFailure(e));
   }
-}
-
+};

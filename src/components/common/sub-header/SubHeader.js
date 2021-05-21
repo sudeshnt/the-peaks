@@ -1,29 +1,32 @@
-import { RightContainer } from "./styles"
-import { useHistory, useLocation } from 'react-router'
-import URLS from '../../../config/urls'
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import Button from "../button/Button";
+import { useHistory, useLocation } from 'react-router-dom';
+import { RightContainer } from './styles';
+import URLS from '../../../config/urls';
+import Button from '../button/Button';
+import images from '../../../assets/images';
 
 const SubHeader = ({
-  title
+  title,
 }) => {
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
 
   const onClickBookmarksButton = () => {
     history.push(URLS.BOOKMARKS);
-  }
+  };
 
   return (
     <div className="app-sub-header">
       <h1>{title}</h1>
       <RightContainer>
         {
-          location.pathname !== URLS.BOOKMARKS &&
-          <Button 
-            title='view bookmarks'
-            icon={faBookmark}
-            onClick={onClickBookmarksButton} />
+          location.pathname !== URLS.BOOKMARKS
+          && (
+          <Button
+            title="view bookmarks"
+            icon={images.bookmarkOnIcon}
+            onClick={onClickBookmarksButton}
+          />
+          )
         }
         <select defaultValue="Apples">
           <option>Newest First</option>
@@ -31,7 +34,7 @@ const SubHeader = ({
         </select>
       </RightContainer>
     </div>
-  )
-}
+  );
+};
 
 export default SubHeader;

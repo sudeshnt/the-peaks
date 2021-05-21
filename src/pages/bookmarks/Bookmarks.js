@@ -1,22 +1,19 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import SubHeader from '../../components/common/sub-header/SubHeader';
 
-const Bookmarks = () => {
+const Bookmarks = () => (
+  <div className="page-content">
+    <SubHeader title="All Bookmarks" />
+    <section>
+      Bookmarks
+    </section>
+  </div>
+);
 
-  return (
-    <div className="page-content">
-      <SubHeader title={'All Bookmarks'}/>
-      <section>
-        Bookmarks
-      </section>
-    </div>
-  )
-}
-
-const Styled = {
-  Container: styled.div`
-    display: flex;
-  `
-}
+// const Styled = {
+//   Container: styled.div`
+//     display: flex;
+//   `,
+// };
 
 export default Bookmarks;

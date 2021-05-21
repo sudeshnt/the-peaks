@@ -2,7 +2,7 @@ const URLS = {
   HOME: '/home',
   SEARCH: '/search',
   ARTICLE: '/article',
-  BOOKMARKS: '/bookmarks'
-}
+  BOOKMARKS: '/bookmarks',
+};
 
 export default URLS;

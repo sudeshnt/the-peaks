@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { desaturate } from 'polished';
 
 export const SearchButton = styled.a`

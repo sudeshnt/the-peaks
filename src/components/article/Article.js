@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { rgba } from 'polished';
-import { ArticleTypes } from "../../config/shared";
+import { useHistory } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+import { ArticleTypes } from '../../config/shared';
+import URLS from '../../config/urls';
+import images from '../../assets/images';
 
 const Styled = {
   ArticleContainer: styled.div`
@@ -13,23 +17,32 @@ const Styled = {
     color: white;
     border-bottom: 2px solid chocolate;
     cursor: pointer;
+    box-sizing: border-box;
+    background: #0D47A1;
     
     &:hover {
       opacity: 0.9
     }
   `,
   ArticleImage: styled.img`
-    width: 100%;
-    height: 100%;
+    ${({ imageAvailable }) => (
+    imageAvailable ? {
+      width: '100%',
+      height: '100%',
+    } : {
+      margin: 'auto 2rem',
+    }
+  )}
   `,
   ArticleBody: styled.div`
     background: ${rgba('#09357B', 0.8)};
     position: absolute;
     bottom: 0;
+    left: 1px;
     z-index: 1;
     padding: 10px;
     max-height: calc(100% - 20px);
-    width: calc(100% - 20px);
+    width: calc(100% - 22px);
   `,
   ArticleTitle: styled.div`
     font-size: 24px;
@@ -39,34 +52,42 @@ const Styled = {
   ArticleDescription: styled.div`
     font-size: 14px;
     line-height: 20px;
-  `
-}
+  `,
+};
 
 const Article = ({
   type,
-  article
+  article,
 }) => {
+  const {
+    ArticleContainer, ArticleImage, ArticleBody, ArticleTitle, ArticleDescription,
+  } = Styled;
+  const history = useHistory();
 
-  const { ArticleContainer, ArticleImage, ArticleBody, ArticleTitle, ArticleDescription } = Styled;
+  const articleDetails = (articleId) => {
+    history.push(`${URLS.ARTICLE}/${encodeURIComponent(articleId)}`);
+  };
 
   return (
-    <ArticleContainer className="article">
-      <ArticleImage src={article?.fields?.thumbnail}  alt="" />
+    <ArticleContainer className="article" onClick={() => articleDetails(article?.id)}>
+      <ArticleImage imageAvailable={article?.fields?.thumbnail} src={article?.fields?.thumbnail ?? images.logo} alt="" />
       <ArticleBody>
         <ArticleTitle>
           {article?.webTitle}
         </ArticleTitle>
         {
-          type === ArticleTypes.WITH_TITLE_THUMBNAIL_AND_DESCRIPTION && <ArticleDescription>
+          type === ArticleTypes.WITH_TITLE_THUMBNAIL_AND_DESCRIPTION && (
+          <ArticleDescription>
             <div dangerouslySetInnerHTML={{
-              __html: article?.fields?.headline
-            }} />
+              __html: DOMPurify.sanitize(article?.fields?.headline),
+            }}
+            />
           </ArticleDescription>
+          )
         }
       </ArticleBody>
     </ArticleContainer>
-  )
-
-}
+  );
+};
 
 export default Article;

@@ -1,17 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TopStoriesSection = styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
+  margin: -5px;
   
-  ${({loading}) => {
+  ${({ loading }) => {
     if (loading) {
       return {
         height: '200px',
         justifyContent: 'center',
-        alignItems: 'center'
-      }
+        alignItems: 'center',
+      };
     }
+    return {};
   }}
 
   & > .column {
@@ -20,6 +23,8 @@ export const TopStoriesSection = styled.div`
 
     &.right {
       display: flex;
+      flex-wrap: wrap;
+      margin: 0 0;
 
       .column {
         flex: 1 0 250px;
@@ -37,14 +42,15 @@ export const SportsSection = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  ${({loading}) => {
+  ${({ loading }) => {
     if (loading) {
       return {
         height: '200px',
         justifyContent: 'center',
-        alignItems: 'center'
-      }
+        alignItems: 'center',
+      };
     }
+    return {};
   }}
 
   .section {
