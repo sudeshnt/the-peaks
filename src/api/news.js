@@ -34,7 +34,8 @@ export const searchNews = (query, sortOrder, page, pageSize) => {
 
 export const newsDetails = (articleId) => {
   const qs = getQueryString({
-    'show-fields': [...commonFields, 'body'].join(','),
+    'show-fields': [...commonFields, 'body', 'trailText'].join(','),
+    'show-elements': 'all',
   });
   return axios.get(`${baseUrl}/${articleId}?${qs}`);
 };
