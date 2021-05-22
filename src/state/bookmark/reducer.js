@@ -34,7 +34,7 @@ const BookmarksReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        bookmarks: payload,
+        items: payload,
       };
     case FETCH_BOOKMARKS_ERROR:
     case ADD_BOOKMARK_ERROR:

@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import SubHeader from '../../components/common/sub-header/SubHeader';
-import { searchNews } from '../../state/article/thunks';
-import Article from '../../components/article/Article';
-import { ArticleTypes } from '../../config/shared';
-import Loader from '../../components/common/loader/Loader';
+import SubHeader from 'components/common/sub-header/SubHeader';
+import { searchNews } from 'state/article/thunks';
+import Article from 'components/article/Article';
+import { ArticleTypes } from 'config/shared';
+import Loader from 'components/common/loader/Loader';
 
 const Search = () => {
   const location = useLocation();

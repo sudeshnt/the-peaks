@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import article from './article/reducer';
-import bookmark from './bookmark/reducer';
+import article from 'state/article/reducer';
+import bookmark from 'state/bookmark/reducer';
 
 const rootReducer = combineReducers({
   article,

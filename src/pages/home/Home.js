@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Article from '../../components/article/Article';
-import Loader from '../../components/common/loader/Loader';
-import SubHeader from '../../components/common/sub-header/SubHeader';
-import { fetchTopNews, fetchSectionNews } from '../../state/article/thunks';
+import Article from 'components/article/Article';
+import Loader from 'components/common/loader/Loader';
+import SubHeader from 'components/common/sub-header/SubHeader';
+import { fetchTopNews, fetchSectionNews } from 'state/article/thunks';
 import { TopStoriesSection, SportsSection } from './styles';
 
 const Home = () => {

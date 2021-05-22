@@ -2,10 +2,10 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import * as newsApi from '../../api/news';
-import Button from '../../components/common/button/Button';
-import images from '../../assets/images';
-import { fetchBookmarks, addBookmark, removeBookmark } from '../../state/bookmark/thunk';
+import Button from 'components/common/button/Button';
+import * as newsApi from 'api/news';
+import images from 'assets/images';
+import { fetchBookmarks, addBookmark, removeBookmark } from 'state/bookmark/thunk';
 
 const Article = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Article = () => {
   const [article, setArticle] = useState(null);
   const [bookmarkedStatus, setBookmarkedStatus] = useState(false);
 
-  const bookmarks = useSelector((state) => state.bookmark.bookmarks);
+  const bookmarks = useSelector((state) => state.bookmark.items);
   const decodedArticleId = useMemo(() => decodeURIComponent(articleId), [articleId]);
 
   useEffect(() => {

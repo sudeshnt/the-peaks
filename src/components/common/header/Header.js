@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import URLS from 'config/urls';
 import { SearchButton, SearchInput, StyledLogo } from './styles';
-import URLS from '../../../config/urls';
 
 const Header = () => {
   const history = useHistory();

@@ -1,4 +1,4 @@
-import { StorageKeys } from '../../config/shared';
+import { StorageKeys } from 'config/shared';
 import {
   fetchBookmarksInProgress,
   fetchBookmarksSuccess,
@@ -26,7 +26,7 @@ export const addBookmark = (article) => (dispatch, getState) => {
     dispatch(addBookmarkInProgress());
     const { bookmark } = getState();
     const bookmarks = [
-      ...(bookmark.bookmarks ?? []),
+      ...(bookmark.items ?? []),
       article,
     ];
     localStorage.setItem(StorageKeys.BOOKMARKS, JSON.stringify(bookmarks));
@@ -40,7 +40,7 @@ export const removeBookmark = (articleId) => (dispatch, getState) => {
   try {
     dispatch(removeBookmarkInProgress());
     const { bookmark } = getState();
-    const bookmarks = bookmark.bookmarks?.filter(
+    const bookmarks = bookmark.items?.filter(
       (bookmarkedArticle) => bookmarkedArticle.id !== articleId,
     );
     localStorage.setItem(StorageKeys.BOOKMARKS, JSON.stringify(bookmarks));

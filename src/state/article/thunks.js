@@ -1,3 +1,4 @@
+import * as newsApi from 'api/news';
 import {
   fetchTopNewsInProgress,
   fetchTopNewsSuccess,
@@ -9,7 +10,6 @@ import {
   searchNewsSuccess,
   searchNewsFailure,
 } from './actions';
-import * as newsApi from '../../api/news';
 
 export const fetchTopNews = () => async (dispatch) => {
   try {
