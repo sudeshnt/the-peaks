@@ -36,6 +36,7 @@ module.exports = {
     'no-use-before-define': ['error', { variables: false }],
     'import/prefer-default-export': [0],
     'no-useless-return': [0],
+    'react/jsx-props-no-spreading': [0],
     'import/order': [
       'warn',
       {

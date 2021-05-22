@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BookMarksButton = styled.button`
+export const ButtonContainer = styled.button`
   margin-right: 20px;
 
   &:hover {
@@ -23,11 +23,12 @@ const Button = ({
   icon,
   title,
   onClick,
+  disabled,
 }) => (
-  <BookMarksButton className="btn" onClick={onClick}>
+  <ButtonContainer className="btn" onClick={onClick} disabled={disabled}>
     <img src={icon} alt="" />
     <span>{title}</span>
-  </BookMarksButton>
+  </ButtonContainer>
 );
 
 export default Button;

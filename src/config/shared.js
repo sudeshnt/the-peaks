@@ -24,4 +24,7 @@ export const DaysOfWeek = Object.freeze([
   'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',
 ]);
 
-export const DateFormat = 'DDD';
+export const ToastTypes = Object.freeze({
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+});

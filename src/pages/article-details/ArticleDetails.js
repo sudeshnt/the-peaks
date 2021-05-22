@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import * as newsApi from 'api/news';
 import images from 'assets/images';
 import Button from 'components/common/button/Button';
+import Toast, { Toasts } from 'components/common/toast/Toast';
 import { DaysOfWeek } from 'config/shared';
 import { addBookmark, fetchBookmarks, removeBookmark } from 'state/bookmark/thunk';
 
@@ -18,6 +19,9 @@ const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [bookmarkedStatus, setBookmarkedStatus] = useState(false);
+  const [toast, setToast] = useState({
+    ...Toasts.BOOKMARK_ADDED,
+  });
 
   const bookmarks = useSelector((state) => state.bookmark.items);
   const decodedArticleId = useMemo(() => decodeURIComponent(articleId), [articleId]);
@@ -61,11 +65,20 @@ const Article = () => {
   const onAddBookmark = () => {
     dispatch(addBookmark(article));
     setBookmarkedStatus(true);
+    showToast(Toasts.BOOKMARK_ADDED);
   };
 
   const onRemoveBookmark = () => {
     dispatch(removeBookmark(decodedArticleId));
     setBookmarkedStatus(false);
+    showToast(Toasts.BOOKMARK_REMOVED);
+  };
+
+  const showToast = (type) => {
+    setToast({ visible: true, ...type });
+    setTimeout(() => {
+      setToast({ visible: false, ...type });
+    }, 2900);
   };
 
   const formatPublicationDate = (webPublicationMoment) => {
@@ -86,12 +99,14 @@ const Article = () => {
                   title="remove bookmark"
                   icon={images.bookmarkOnIcon}
                   onClick={onRemoveBookmark}
+                  disabled={toast.visible}
                 />
               ) : (
                 <Button
                   title="add bookmark"
                   icon={images.bookmarkOffIcon}
                   onClick={onAddBookmark}
+                  disabled={toast.visible}
                 />
               )
             }
@@ -117,6 +132,7 @@ const Article = () => {
                 )
               }
             </div>
+            <Toast {...toast} />
           </Styled.NewsContainer>
           )
         }
@@ -152,11 +168,6 @@ const Styled = {
       line-height: 26px;
     }
 
-    img {
-      width: 100%;
-      height: auto;
-    }
-
     hr {
       border-top: 1px solid ${rgba('#979797', 0.1)};
     }
@@ -164,6 +175,11 @@ const Styled = {
     .body {
       display: flex;
       flex-wrap: wrap;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
 
       .article {
         flex: 2;
@@ -174,11 +190,6 @@ const Styled = {
         flex: 1 0 300px;
         align-items: center;
         padding: 8px 0 0 2.5rem;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
 
         p {
           font-size: 12px;
