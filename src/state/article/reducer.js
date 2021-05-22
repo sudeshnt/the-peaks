@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   FETCH_SECTION_NEWS_ERROR,
   FETCH_SECTION_NEWS_IN_PROGRESS,
@@ -16,8 +17,10 @@ const initialState = {
   sectionNews: {},
   sectionNewsLoading: false,
   searchedNews: [],
+  items: [],
   loading: false,
   error: null,
+  totalItems: 0,
 };
 
 const ArticleReducer = (state = initialState, action) => {
@@ -40,7 +43,6 @@ const ArticleReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        items: [],
         error: null,
       };
     case FETCH_TOP_NEWS_SUCCESS:
@@ -59,7 +61,8 @@ const ArticleReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        items: payload,
+        items: _.concat(state.items, payload.articles),
+        totalItems: payload.total,
       };
     case FETCH_TOP_NEWS_ERROR:
     case FETCH_SECTION_NEWS_ERROR:

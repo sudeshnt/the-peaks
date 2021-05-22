@@ -37,11 +37,16 @@ export const fetchSectionNews = (sortOrder) => async (dispatch) => {
   }
 };
 
-export const searchNews = (query, sortOrder) => async (dispatch) => {
+export const searchNews = (query, sortOrder, page, pageSize) => async (dispatch) => {
   try {
     dispatch(searchNewsInProgress());
-    const response = await newsApi.searchNews(query, sortOrder, 15);
-    dispatch(searchNewsSuccess(response?.data?.response?.results));
+    const response = await newsApi.searchNews(query, sortOrder, page, pageSize);
+    dispatch(searchNewsSuccess(
+      {
+        articles: response?.data?.response?.results,
+        total: response?.data?.response?.total,
+      },
+    ));
   } catch (e) {
     dispatch(searchNewsFailure(e));
   }

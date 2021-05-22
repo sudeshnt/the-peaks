@@ -13,9 +13,9 @@ import {
 import { SortOrders } from 'config/shared';
 
 const initialState = {
-  bookmarks: [],
   loading: false,
   error: null,
+  items: [],
 };
 
 const BookmarksReducer = (state = initialState, action) => {
