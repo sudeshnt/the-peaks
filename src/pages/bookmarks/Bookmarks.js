@@ -1,12 +1,12 @@
+import _ from 'lodash';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import _ from 'lodash';
-import SubHeader from 'components/common/sub-header/SubHeader';
-import { fetchBookmarks } from 'state/bookmark/thunk';
-import Loader from 'components/common/loader/Loader';
 import Article from 'components/article/Article';
+import Loader from 'components/common/loader/Loader';
+import SubHeader from 'components/common/sub-header/SubHeader';
 import { ArticleTypes } from 'config/shared';
+import { fetchBookmarks } from 'state/bookmark/thunk';
 
 const Bookmarks = () => {
   const { BookmarksContainer, BookmarkContainer } = Styled;

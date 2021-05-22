@@ -1,13 +1,13 @@
 import './App.scss';
 import {
-  BrowserRouter as Router, Switch, Route, Redirect,
+  Redirect, Route, BrowserRouter as Router, Switch,
 } from 'react-router-dom';
 import Header from './components/common/header/Header';
+import URLS from './config/urls';
+import Article from './pages/article-details/ArticleDetails';
+import Bookmarks from './pages/bookmarks/Bookmarks';
 import Home from './pages/home/Home';
 import Search from './pages/search/Search';
-import Bookmarks from './pages/bookmarks/Bookmarks';
-import Article from './pages/article-details/ArticleDetails';
-import URLS from './config/urls';
 
 function App() {
   return (

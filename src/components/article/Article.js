@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import DOMPurify from 'dompurify';
 import { rgba } from 'polished';
 import { useHistory } from 'react-router-dom';
-import DOMPurify from 'dompurify';
+import styled from 'styled-components';
+import images from 'assets/images';
 import { ArticleTypes } from 'config/shared';
 import URLS from 'config/urls';
-import images from 'assets/images';
 
 const Styled = {
   ArticleContainer: styled.div`

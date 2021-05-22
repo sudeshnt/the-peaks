@@ -1,8 +1,8 @@
 import { useHistory, useLocation } from 'react-router-dom';
-import URLS from 'config/urls';
-import Button from 'components/common/button/Button';
-import images from 'assets/images';
 import { RightContainer } from './styles';
+import images from 'assets/images';
+import Button from 'components/common/button/Button';
+import URLS from 'config/urls';
 
 const SubHeader = ({
   title,

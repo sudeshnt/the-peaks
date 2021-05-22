@@ -1,11 +1,11 @@
-import { useEffect, useState, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from 'components/common/button/Button';
 import * as newsApi from 'api/news';
 import images from 'assets/images';
-import { fetchBookmarks, addBookmark, removeBookmark } from 'state/bookmark/thunk';
+import Button from 'components/common/button/Button';
+import { addBookmark, fetchBookmarks, removeBookmark } from 'state/bookmark/thunk';
 
 const Article = () => {
   const dispatch = useDispatch();

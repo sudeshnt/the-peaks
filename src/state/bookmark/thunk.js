@@ -1,15 +1,15 @@
-import { StorageKeys } from 'config/shared';
 import {
-  fetchBookmarksInProgress,
-  fetchBookmarksSuccess,
-  fetchBookmarksFailure,
+  addBookmarkFailure,
   addBookmarkInProgress,
   addBookmarkSuccess,
-  addBookmarkFailure,
+  fetchBookmarksFailure,
+  fetchBookmarksInProgress,
+  fetchBookmarksSuccess,
+  removeBookmarkFailure,
   removeBookmarkInProgress,
   removeBookmarkSuccess,
-  removeBookmarkFailure,
 } from './actions';
+import { StorageKeys } from 'config/shared';
 
 export const fetchBookmarks = () => (dispatch) => {
   try {

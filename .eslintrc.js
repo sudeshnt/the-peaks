@@ -34,5 +34,23 @@ module.exports = {
     'react/no-danger': [0],
     'no-use-before-define': ['error', { variables: false }],
     'import/prefer-default-export': [0],
+    'import/order': [
+      'warn',
+      {
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        'newlines-between': 'never',
+        pathGroupsExcludedImportTypes: ['react'],
+      },
+    ],
+    'sort-imports': [
+      'warn',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
   },
 };
