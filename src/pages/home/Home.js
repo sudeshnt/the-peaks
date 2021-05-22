@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SportsSection, TopStoriesSection } from './styles';
+import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
@@ -14,11 +15,25 @@ const Home = () => {
     sectionNewsLoading,
     sectionNews,
   } = useSelector((state) => state.article);
+  const { sortOrder } = useContext(AppContext);
 
   useEffect(() => {
-    dispatch(fetchTopNews());
-    dispatch(fetchSectionNews());
-  }, [dispatch]);
+    search();
+  }, []);
+
+  const initialRender = useRef(true);
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+    search();
+  }, [sortOrder]);
+
+  const search = () => {
+    dispatch(fetchTopNews(sortOrder));
+    dispatch(fetchSectionNews(sortOrder));
+  };
 
   return (
     <div className="page-content">
@@ -58,7 +73,7 @@ const Home = () => {
                 <div className="section">
                   {
                     entry.results.map((article) => (
-                      <div className="article-container">
+                      <div key={article.id} className="article-container">
                         <Article article={article} />
                       </div>
                     ))

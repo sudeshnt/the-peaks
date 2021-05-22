@@ -11,22 +11,22 @@ import {
 } from './actions';
 import * as newsApi from 'api/news';
 
-export const fetchTopNews = () => async (dispatch) => {
+export const fetchTopNews = (sortOrder) => async (dispatch) => {
   try {
     dispatch(fetchTopNewsInProgress());
-    const response = await newsApi.fetchSection('news', 8);
+    const response = await newsApi.fetchSection('news', sortOrder, 8);
     dispatch(fetchTopNewsSuccess(response?.data?.response?.results));
   } catch (e) {
     dispatch(fetchTopNewsFailure(e));
   }
 };
 
-export const fetchSectionNews = () => async (dispatch) => {
+export const fetchSectionNews = (sortOrder) => async (dispatch) => {
   try {
     dispatch(fetchSectionNewsInProgress());
-    const sportNews = await newsApi.fetchSection('sport', 6);
-    const cultureNews = await newsApi.fetchSection('culture', 6);
-    const lifeStyleNews = await newsApi.fetchSection('lifeandstyle', 6);
+    const sportNews = await newsApi.fetchSection('sport', sortOrder, 6);
+    const cultureNews = await newsApi.fetchSection('culture', sortOrder, 6);
+    const lifeStyleNews = await newsApi.fetchSection('lifeandstyle', sortOrder, 6);
     dispatch(fetchSectionNewsSuccess({
       sportNews: sportNews?.data?.response,
       cultureNews: cultureNews?.data?.response,
@@ -37,12 +37,10 @@ export const fetchSectionNews = () => async (dispatch) => {
   }
 };
 
-export const searchNews = (query, pagination) => async (dispatch) => {
-  // eslint-disable-next-line
-  console.log(pagination);
+export const searchNews = (query, sortOrder) => async (dispatch) => {
   try {
     dispatch(searchNewsInProgress());
-    const response = await newsApi.searchNews(query, 15);
+    const response = await newsApi.searchNews(query, sortOrder, 15);
     dispatch(searchNewsSuccess(response?.data?.response?.results));
   } catch (e) {
     dispatch(searchNewsFailure(e));

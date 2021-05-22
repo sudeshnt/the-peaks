@@ -1,8 +1,9 @@
 import queryString from 'query-string';
-import { useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
@@ -10,24 +11,33 @@ import { ArticleTypes } from 'config/shared';
 import { searchNews } from 'state/article/thunks';
 
 const Search = () => {
+  const { NewsContainer, ArticleContainer } = Styled;
   const location = useLocation();
   const dispatch = useDispatch();
   const {
     items: news,
     loading,
   } = useSelector((state) => state.article);
-
-  const { NewsContainer, ArticleContainer } = Styled;
+  const { sortOrder } = useContext(AppContext);
 
   useEffect(() => {
-    const { q } = queryString.parse(location.search);
-    if (q) {
-      search(q);
-    }
+    search();
   }, [location.search]);
 
-  const search = (query) => {
-    dispatch(searchNews(query));
+  const initialRender = useRef(true);
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+    search();
+  }, [sortOrder]);
+
+  const search = () => {
+    const { q: query } = queryString.parse(location.search);
+    if (query) {
+      dispatch(searchNews(query, sortOrder));
+    }
   };
 
   return (

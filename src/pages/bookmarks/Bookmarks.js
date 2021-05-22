@@ -1,23 +1,30 @@
 import _ from 'lodash';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
 import { ArticleTypes } from 'config/shared';
+import { sortBookmarks } from 'state/bookmark/actions';
 import { fetchBookmarks } from 'state/bookmark/thunk';
 
 const Bookmarks = () => {
   const { BookmarksContainer, BookmarkContainer } = Styled;
   const dispatch = useDispatch();
   const { items: bookmarks, loading } = useSelector((state) => state.bookmark);
+  const { sortOrder } = useContext(AppContext);
 
   useEffect(() => {
     if (_.isEmpty(bookmarks)) {
       dispatch(fetchBookmarks());
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(sortBookmarks(sortOrder));
+  }, [bookmarks, sortOrder]);
 
   return (
     <div className="page-content">

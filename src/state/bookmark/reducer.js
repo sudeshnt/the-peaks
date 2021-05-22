@@ -8,7 +8,9 @@ import {
   REMOVE_BOOKMARK_ERROR,
   REMOVE_BOOKMARK_IN_PROGRESS,
   REMOVE_BOOKMARK_SUCCESS,
+  SORT_BOOKMARKS,
 } from './types';
+import { SortOrders } from 'config/shared';
 
 const initialState = {
   bookmarks: [],
@@ -43,6 +45,19 @@ const BookmarksReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: payload,
+      };
+    case SORT_BOOKMARKS:
+      return {
+        ...state,
+        items: state.items.sort((a, b) => {
+          const sortOrder = payload;
+          switch (sortOrder) {
+            case SortOrders.OLDEST_FIRST.key:
+              return new Date(b.webPublicationDate) - new Date(a.webPublicationDate);
+            default:
+              return new Date(a.webPublicationDate) - new Date(b.webPublicationDate);
+          }
+        }),
       };
     default:
       return state;

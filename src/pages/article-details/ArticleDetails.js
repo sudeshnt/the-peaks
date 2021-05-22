@@ -1,4 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import _ from 'lodash';
+import {
+  useEffect, useMemo, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,7 +21,7 @@ const Article = () => {
 
   useEffect(() => {
     fetchArticleDetails(decodedArticleId);
-    if (!bookmarks?.length) {
+    if (_.isEmpty(bookmarks)) {
       dispatch(fetchBookmarks());
     }
     // eslint-disable-next-line
@@ -26,7 +29,6 @@ const Article = () => {
 
   useEffect(() => {
     getBookmarkStatus();
-    // eslint-disable-next-line
   }, [bookmarks]);
 
   const fetchArticleDetails = async (id) => {

@@ -5,5 +5,17 @@ export const ArticleTypes = Object.freeze({
 });
 
 export const StorageKeys = Object.freeze({
-  BOOKMARKS: 'BOOKMARKS',
+  BOOKMARKS: 'bookmarks',
+  SORT_ORDER: 'sort_order',
+});
+
+export const SortOrders = Object.freeze({
+  NEWEST_FIRST: {
+    key: 'newest',
+    name: 'Newest First',
+  },
+  OLDEST_FIRST: {
+    key: 'oldest',
+    name: 'Oldest First',
+  },
 });

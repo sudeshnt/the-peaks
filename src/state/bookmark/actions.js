@@ -8,6 +8,7 @@ import {
   REMOVE_BOOKMARK_ERROR,
   REMOVE_BOOKMARK_IN_PROGRESS,
   REMOVE_BOOKMARK_SUCCESS,
+  SORT_BOOKMARKS,
 } from './types';
 
 export const fetchBookmarksInProgress = () => ({
@@ -50,4 +51,9 @@ export const removeBookmarkSuccess = (bookmarks) => ({
 export const removeBookmarkFailure = (error) => ({
   type: REMOVE_BOOKMARK_ERROR,
   payload: error,
+});
+
+export const sortBookmarks = (sortOrder) => ({
+  type: SORT_BOOKMARKS,
+  payload: sortOrder,
 });

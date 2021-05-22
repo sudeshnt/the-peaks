@@ -12,19 +12,21 @@ export const getQueryString = (queryObj = {}) => {
   return queryString.stringify(queryObject);
 };
 
-export const fetchSection = (section, count) => {
+export const fetchSection = (section, sortOrder, count) => {
   const qs = getQueryString({
     'page-size': count,
     'show-fields': commonFields.join(','),
+    'order-by': sortOrder,
   });
   return axios.get(`${baseUrl}/${section}?${qs}`);
 };
 
-export const searchNews = (query, count) => {
+export const searchNews = (query, sortOrder, count) => {
   const qs = getQueryString({
     q: query,
     'page-size': count,
     'show-fields': commonFields.join(','),
+    'order-by': sortOrder,
   });
   return axios.get(`${baseUrl}/search?${qs}`);
 };
