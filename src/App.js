@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import Header from './components/common/header/Header';
 import URLS from './config/urls';
-import Article from './pages/article-details/ArticleDetails';
+import ArticleDetails from './pages/article-details/ArticleDetails';
 import Bookmarks from './pages/bookmarks/Bookmarks';
 import Home from './pages/home/Home';
 import Search from './pages/search/Search';
@@ -42,7 +42,7 @@ function App() {
                 <Search />
               </Route>
               <Route path={`${URLS.ARTICLE}/:articleId`}>
-                <Article />
+                <ArticleDetails />
               </Route>
               <Route path={URLS.BOOKMARKS}>
                 <Bookmarks />

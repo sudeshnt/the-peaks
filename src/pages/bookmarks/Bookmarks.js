@@ -6,7 +6,6 @@ import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
-import { ArticleTypes } from 'config/shared';
 import { sortBookmarks } from 'state/bookmark/actions';
 import { fetchBookmarks } from 'state/bookmark/thunk';
 
@@ -33,11 +32,11 @@ const Bookmarks = () => {
         { loading && <Loader /> }
         <BookmarksContainer>
           {
-            bookmarks?.map((article) => (
+            bookmarks?.map((article, index) => (
               <BookmarkContainer key={article.id}>
                 <Article
-                  type={ArticleTypes.WITH_TITLE_AND_THUMBNAIL}
                   article={article}
+                  index={index}
                 />
               </BookmarkContainer>
             ))
@@ -53,11 +52,11 @@ const Styled = {
     display:flex;
     flex-wrap: wrap;
     width: auto;
+    justify-content: center;
   `,
   BookmarkContainer: styled.div`
     flex: 1 0 350px;
     padding: 10px;
-    height: 350px;
     max-width: 350px;
   `,
 };

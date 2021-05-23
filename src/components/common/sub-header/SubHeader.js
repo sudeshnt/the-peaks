@@ -25,28 +25,31 @@ const SubHeader = ({
   };
 
   return (
-    <div className="app-sub-header">
-      <h1>{title}</h1>
-      <RightContainer>
-        {
-          location.pathname !== URLS.BOOKMARKS
-          && (
-          <Button
-            title="view bookmarks"
-            icon={images.bookmarkOnIcon}
-            onClick={onClickBookmarksButton}
-          />
-          )
-        }
-        <select value={sortOrder} onChange={onOrderChanged}>
+    <header className="app-sub-header">
+      <div className="content">
+        <h1>{title}</h1>
+        <RightContainer>
           {
-            Object.entries(SortOrders).map(([key, order]) => (
-              <option key={key} value={order.key}>{order.name}</option>
-            ))
+            location.pathname !== URLS.BOOKMARKS
+            && (
+            <Button
+              className="bookmarks-btn"
+              title="view bookmarks"
+              icon={images.bookmarkOnIcon}
+              onClick={onClickBookmarksButton}
+            />
+            )
           }
-        </select>
-      </RightContainer>
-    </div>
+          <select value={sortOrder} onChange={onOrderChanged}>
+            {
+              Object.entries(SortOrders).map(([key, order]) => (
+                <option key={key} value={order.key}>{order.name}</option>
+              ))
+            }
+          </select>
+        </RightContainer>
+      </div>
+    </header>
   );
 };
 

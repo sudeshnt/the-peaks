@@ -6,16 +6,20 @@ import images from 'assets/images';
 import { ArticleTypes } from 'config/shared';
 import URLS from 'config/urls';
 
+const borderColors = [
+  '#388E3C', '#D32F2F', '#FFC107', '#2196F3',
+];
+
 const Styled = {
   ArticleContainer: styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
+    height: ${({ type }) => (type === ArticleTypes.WITH_TITLE ? '110px' : '300px')};
     box-shadow: 0 3px 5px 0 rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     color: white;
-    border-bottom: 2px solid chocolate;
+    border-bottom: 2px solid ${({ index }) => borderColors[index % 4]};
     cursor: pointer;
     box-sizing: border-box;
     background: #0D47A1;
@@ -24,30 +28,43 @@ const Styled = {
       opacity: 0.9
     }
   `,
-  ArticleImage: styled.img`
-    ${({ imageAvailable }) => (
+  ArticleImageContainer: styled.div`
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-height: 300px;
+
+    img {${({ imageAvailable }) => (
     imageAvailable ? {
       width: '100%',
       height: '100%',
     } : {
-      margin: 'auto 2rem',
+      width: '200px',
+      height: '80px',
+      margin: '80px auto',
     }
-  )}
+  )}}
   `,
   ArticleBody: styled.div`
     background: ${rgba('#09357B', 0.8)};
     position: absolute;
     bottom: 0;
-    left: 1px;
+    left: 0;
     z-index: 1;
     padding: 10px;
     max-height: calc(100% - 20px);
-    width: calc(100% - 22px);
+    width: calc(100% - 20px);
   `,
   ArticleTitle: styled.div`
     font-size: 24px;
     font-weight: 700;
     line-height: 30px;
+    height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   `,
   ArticleDescription: styled.div`
     font-size: 14px;
@@ -56,11 +73,13 @@ const Styled = {
 };
 
 const Article = ({
-  type,
+  type = ArticleTypes.WITH_TITLE_AND_THUMBNAIL,
   article,
+  index,
 }) => {
   const {
-    ArticleContainer, ArticleImage, ArticleBody, ArticleTitle, ArticleDescription,
+    ArticleContainer, ArticleImageContainer,
+    ArticleBody, ArticleTitle, ArticleDescription,
   } = Styled;
   const history = useHistory();
 
@@ -69,8 +88,20 @@ const Article = ({
   };
 
   return (
-    <ArticleContainer className="article" onClick={() => articleDetails(article?.id)}>
-      <ArticleImage imageAvailable={article?.fields?.thumbnail} src={article?.fields?.thumbnail ?? images.logo} alt="" />
+    <ArticleContainer
+      index={index}
+      type={type}
+      className="article"
+      onClick={() => articleDetails(article?.id)}
+    >
+      {
+        type !== ArticleTypes.WITH_TITLE
+        && (
+          <ArticleImageContainer imageAvailable={article?.fields?.thumbnail}>
+            <img src={article?.fields?.thumbnail ?? images.logo} alt="" />
+          </ArticleImageContainer>
+        )
+      }
       <ArticleBody>
         <ArticleTitle>
           {article?.webTitle}

@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 import { useContext, useEffect, useRef } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+// import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -8,7 +8,6 @@ import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
-import { ArticleTypes } from 'config/shared';
 import usePagination from 'hooks/usePagination';
 import { searchNews } from 'state/article/thunks';
 
@@ -44,10 +43,10 @@ const Search = () => {
     search();
   }, [page, sortOrder]);
 
-  const search = () => {
+  const search = (reset = true) => {
     const { q: query } = queryString.parse(location.search);
     if (query) {
-      dispatch(searchNews(query, sortOrder, page, pageSize));
+      dispatch(searchNews(query, sortOrder, page, pageSize, reset));
     }
   };
 
@@ -63,20 +62,22 @@ const Search = () => {
         <NewsContainer
           dataLength={totalItems}
           next={onReachPageEnd}
-          hasMore
+          hasMore={false}
           scrollThreshold={0.9}
           loader={<h4>Loading...</h4>}
         >
-          {
-            news?.map((article) => (
-              <ArticleContainer key={article.id}>
-                <Article
-                  type={ArticleTypes.WITH_TITLE_AND_THUMBNAIL}
-                  article={article}
-                />
-              </ArticleContainer>
-            ))
-          }
+          <div id="scroll">
+            {
+              news?.map((article, index) => (
+                <ArticleContainer key={article.id}>
+                  <Article
+                    article={article}
+                    index={index}
+                  />
+                </ArticleContainer>
+              ))
+            }
+          </div>
         </NewsContainer>
       </section>
     </div>
@@ -84,16 +85,20 @@ const Search = () => {
 };
 
 const Styled = {
-  NewsContainer: styled(InfiniteScroll)`
-    /* display:flex;
-    flex-wrap: wrap;
-    width: auto; */
+  // NewsContainer: styled(InfiniteScroll)`
+  NewsContainer: styled.div`
+    display:flex;
+    #scroll {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   `,
   ArticleContainer: styled.div`
-    flex: 1 0 350px;
+    flex: 1 0 300px;
     padding: 10px;
-    height: 350px;
-    max-width: 350px;
+    max-width: 300px;
+    height: 300px;
   `,
 };
 

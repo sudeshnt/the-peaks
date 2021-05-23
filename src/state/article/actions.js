@@ -5,6 +5,7 @@ import {
   FETCH_TOP_NEWS_ERROR,
   FETCH_TOP_NEWS_IN_PROGRESS,
   FETCH_TOP_NEWS_SUCCESS,
+  RESET_SEARCH_NEWS,
   SEARCH_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
@@ -42,12 +43,16 @@ export const searchNewsInProgress = () => ({
   type: SEARCH_NEWS_IN_PROGRESS,
 });
 
-export const searchNewsSuccess = (articles) => ({
+export const searchNewsSuccess = (searchResults) => ({
   type: SEARCH_NEWS_SUCCESS,
-  payload: articles,
+  payload: searchResults,
 });
 
 export const searchNewsFailure = (error) => ({
   type: SEARCH_NEWS_ERROR,
   payload: error,
+});
+
+export const resetSearchNews = () => ({
+  type: RESET_SEARCH_NEWS,
 });

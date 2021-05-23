@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { StyledLogo } from './styles';
+import images from 'assets/images';
 import SearchBox from 'components/common/search-box/SearchBox';
 import URLS from 'config/urls';
 
@@ -12,14 +13,13 @@ const Header = () => {
 
   return (
     <header className="app-header">
-      <div className="header-logo">
-        <StyledLogo onClick={onClickLogo}>
-          <span>The</span>
-          <span>Peaks</span>
-        </StyledLogo>
-      </div>
-      <div className="search-box">
-        <SearchBox />
+      <div className="content">
+        <div className="header-logo">
+          <StyledLogo src={images.logo} onClick={onClickLogo} />
+        </div>
+        <div className="search-box">
+          <SearchBox />
+        </div>
       </div>
     </header>
   );

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-export const TopStoriesSection = styled.div`
+export const TopStoriesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  flex: 1;
   margin: -5px;
   
   ${({ loading }) => {
@@ -18,27 +17,43 @@ export const TopStoriesSection = styled.div`
   }}
 
   & > .column {
-    flex: 1 500px;
+    flex: 1 1 500px;
     margin: 5px;
+
+    &.left {
+      .article {
+        height: 100%;
+        min-height: 300px;
+      }
+    }
 
     &.right {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
-      margin: 0 0;
+      margin: 0;
+
+      .top, .bottom {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .bottom {
+        height: 120px;
+      }
 
       .column {
-        flex: 1 0 250px;
+        flex: 1 0 200px;
         margin: 5px;
 
         .article {
-          height: 240px;
         }
       }
     }
   }
 `;
 
-export const SportsSection = styled.div`
+export const SectionNewsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 

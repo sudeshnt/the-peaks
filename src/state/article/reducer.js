@@ -6,6 +6,7 @@ import {
   FETCH_TOP_NEWS_ERROR,
   FETCH_TOP_NEWS_IN_PROGRESS,
   FETCH_TOP_NEWS_SUCCESS,
+  RESET_SEARCH_NEWS,
   SEARCH_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
@@ -58,11 +59,18 @@ const ArticleReducer = (state = initialState, action) => {
         sectionNews: payload,
       };
     case SEARCH_NEWS_SUCCESS:
+      // eslint-disable-next-line
+      const { articles, total } = payload;
       return {
         ...state,
         loading: false,
-        items: _.concat(state.items, payload.articles),
-        totalItems: payload.total,
+        items: _.concat(state.items, articles),
+        totalItems: total,
+      };
+    case RESET_SEARCH_NEWS:
+      return {
+        ...state,
+        items: [],
       };
     case FETCH_TOP_NEWS_ERROR:
     case FETCH_SECTION_NEWS_ERROR:
