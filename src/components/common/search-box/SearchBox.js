@@ -1,15 +1,17 @@
 import queryString from 'query-string';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import images from 'assets/images';
 import URLS from 'config/urls';
+import useDebounce from 'hooks/useDebounce';
+import useOutsideClickDetector from 'hooks/useOutsideAlerter';
 
 export const Styled = {
   SearchContainer: styled.div`
     display: flex;
     align-items: center;
-    background-color: #2153A3;
+    background-color: ${({ collapsed }) => (collapsed ? '#09357B' : '#2153A3')};
     padding: 5px 10px;
     border-radius: 4px 4px 0 0;
 
@@ -21,7 +23,7 @@ export const Styled = {
         padding: 8px;
         width: 100%;
         box-sizing: border-box;
-        background-color: #2153A3;
+        background-color: ${({ collapsed }) => (collapsed ? '#09357B' : '#2153A3')};
         border: 0;
         outline: none;
         color: white;
@@ -53,9 +55,16 @@ export const Styled = {
 const SearchBox = () => {
   const history = useHistory();
   const location = useLocation();
-
   const [searchCollapsed, setSearchCollapsed] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const searchBoxRef = useRef();
+  const inputRef = useRef();
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+  useOutsideClickDetector(searchBoxRef, () => {
+    if (searchCollapsed) {
+      setSearchCollapsed(true);
+    }
+  });
   const { SearchContainer } = Styled;
 
   useEffect(() => {
@@ -68,12 +77,20 @@ const SearchBox = () => {
     }
   }, [location.search]);
 
+  useEffect(
+    () => {
+      if (debouncedSearchQuery) {
+        history.replace({
+          pathname: URLS.SEARCH,
+          search: `?q=${encodeURIComponent(debouncedSearchQuery)}`,
+        });
+      }
+    },
+    [debouncedSearchQuery],
+  );
+
   const onEnterSearchQuery = (query) => {
     setSearchQuery(query);
-    history.replace({
-      pathname: URLS.SEARCH,
-      search: `?q=${encodeURIComponent(query)}`,
-    });
   };
 
   const onPress = () => {
@@ -82,14 +99,17 @@ const SearchBox = () => {
       if (location.pathname !== URLS.HOME) {
         history.push(URLS.HOME);
       }
+    } else {
+      inputRef.current.focus();
     }
     setSearchCollapsed(!searchCollapsed);
   };
 
   return (
-    <SearchContainer collapsed={searchCollapsed}>
+    <SearchContainer ref={searchBoxRef} collapsed={searchCollapsed}>
       <div className="input-container">
         <input
+          ref={inputRef}
           placeholder="Search all news"
           value={searchQuery}
           onChange={(e) => onEnterSearchQuery(e.target.value)}
