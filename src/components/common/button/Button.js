@@ -13,7 +13,7 @@ const Button = ({
   </ButtonContainer>
 );
 
-Button.protoTypes = {
+Button.propTypes = {
   icon: PropTypes.node,
   title: PropTypes.string,
   disabled: PropTypes.bool,

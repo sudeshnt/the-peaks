@@ -30,7 +30,6 @@ const Article = () => {
     if (_.isEmpty(bookmarks)) {
       dispatch(fetchBookmarks());
     }
-    // eslint-disable-next-line
   }, [decodedArticleId]);
 
   useEffect(() => {

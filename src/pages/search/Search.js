@@ -80,7 +80,7 @@ const Search = () => {
             </LoaderComponent>
           )}
         >
-          <div className="scroll" key={2}>
+          <div className="scroll" key="item-container">
             {
               news?.map((article, index) => (
                 <ArticleContainer key={article.id + Math.random()}>

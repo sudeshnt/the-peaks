@@ -14,8 +14,8 @@ export const fetchSection = (section, sortOrder, pageSize) => {
 
 export const searchNews = (query, sortOrder, page, pageSize) => {
   const qs = getQueryString({
-    q: query,
-    page,
+    'q': query,
+    'page': page,
     'page-size': pageSize,
     'show-fields': getShowFields(),
     'order-by': sortOrder,

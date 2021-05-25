@@ -30,8 +30,6 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    // ToDO: remove prop-type ignore after adding prop types
-    'react/prop-types': [0],
     'react/no-danger': [0],
     'no-use-before-define': ['error', { variables: false }],
     'import/prefer-default-export': [0],
@@ -39,6 +37,7 @@ module.exports = {
     'react/jsx-props-no-spreading': [0],
     'react/require-default-props': 'off',
     'react/forbid-prop-types': 'off',
+    'quote-props': 'off',
     'import/order': [
       'warn',
       {
