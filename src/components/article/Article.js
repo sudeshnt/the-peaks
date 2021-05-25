@@ -1,5 +1,6 @@
 import DOMPurify from 'dompurify';
 import { rgba } from 'polished';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import images from 'assets/images';
@@ -34,7 +35,8 @@ const Styled = {
     justify-content: center;
     max-height: 300px;
 
-    img {${({ imageAvailable }) => (
+    img {
+    ${({ imageAvailable }) => (
     imageAvailable ? {
       width: '100%',
       height: '100%',
@@ -43,7 +45,8 @@ const Styled = {
       height: '80px',
       margin: '80px auto',
     }
-  )}}
+  )}
+  }
   `,
   ArticleBody: styled.div`
     background: ${rgba('#09357B', 0.8)};
@@ -119,6 +122,16 @@ const Article = ({
       </ArticleBody>
     </ArticleContainer>
   );
+};
+
+Article.propTypes = {
+  type: PropTypes.oneOf([
+    ArticleTypes.WITH_TITLE,
+    ArticleTypes.WITH_TITLE_AND_THUMBNAIL,
+    ArticleTypes.WITH_TITLE_THUMBNAIL_AND_DESCRIPTION,
+  ]),
+  index: PropTypes.number,
+  article: PropTypes.object,
 };
 
 export default Article;

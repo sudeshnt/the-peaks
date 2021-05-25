@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
@@ -30,5 +31,12 @@ const Button = ({
     <span>{title}</span>
   </ButtonContainer>
 );
+
+Button.protoTypes = {
+  icon: PropTypes.node,
+  title: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 export default Button;

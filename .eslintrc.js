@@ -37,6 +37,8 @@ module.exports = {
     'import/prefer-default-export': [0],
     'no-useless-return': [0],
     'react/jsx-props-no-spreading': [0],
+    'react/require-default-props': 'off',
+    'react/forbid-prop-types': 'off',
     'import/order': [
       'warn',
       {

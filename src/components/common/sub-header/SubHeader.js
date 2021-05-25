@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { RightContainer } from './styles';
@@ -51,6 +52,10 @@ const SubHeader = ({
       </div>
     </header>
   );
+};
+
+SubHeader.propTypes = {
+  title: PropTypes.string,
 };
 
 export default SubHeader;
