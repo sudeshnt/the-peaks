@@ -10,6 +10,7 @@ import {
   SEARCH_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
+  SET_LOADING,
 } from './types';
 
 const initialState = {
@@ -28,6 +29,11 @@ const ArticleReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case FETCH_TOP_NEWS_IN_PROGRESS:
       return {
         ...state,

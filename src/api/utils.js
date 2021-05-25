@@ -3,6 +3,9 @@ import queryString from 'query-string';
 export const baseUrl = process.env.REACT_APP_API_BASE_URL;
 export const apiKey = process.env.REACT_APP_API_KEY;
 
+export const TopStoriesCount = 8;
+export const ArticlesPerSection = 6;
+
 export const NewsSections = Object.freeze({
   NEWS: 'news',
   SPORT: 'sport',

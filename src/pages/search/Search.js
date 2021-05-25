@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import { useContext, useEffect, useRef } from 'react';
 // import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from 'react-infinite-scroller';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,6 +10,7 @@ import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
 import usePagination from 'hooks/usePagination';
+import { setLoading } from 'state/article/actions';
 import { searchNews } from 'state/article/thunks';
 
 const Search = () => {
@@ -41,7 +43,13 @@ const Search = () => {
       return;
     }
     search();
-  }, [page, sortOrder]);
+  }, [sortOrder]);
+
+  useEffect(() => {
+    if (page > 1) {
+      search(false);
+    }
+  }, [page]);
 
   const search = (reset = true) => {
     const { q: query } = queryString.parse(location.search);
@@ -51,8 +59,15 @@ const Search = () => {
   };
 
   const onReachPageEnd = () => {
+    dispatch(setLoading());
     onPageChange(page + 1);
   };
+
+  const LoaderComponent = () => (
+    <div style={{ minWidth: '1vw' }}>
+      <Loader />
+    </div>
+  );
 
   return (
     <div className="page-content">
@@ -60,16 +75,18 @@ const Search = () => {
       <section>
         { loading && <Loader /> }
         <NewsContainer
-          dataLength={totalItems}
-          next={onReachPageEnd}
-          hasMore={false}
-          scrollThreshold={0.9}
-          loader={<h4>Loading...</h4>}
+          initialLoad={false}
+          pageStart={1}
+          loadMore={onReachPageEnd}
+          hasMore={!loading}
+          loader={(
+            <LoaderComponent key={1} />
+          )}
         >
-          <div id="scroll">
+          <div className="scroll" key={2}>
             {
               news?.map((article, index) => (
-                <ArticleContainer key={article.id}>
+                <ArticleContainer key={article.id + Math.random()}>
                   <Article
                     article={article}
                     index={index}
@@ -85,10 +102,12 @@ const Search = () => {
 };
 
 const Styled = {
-  // NewsContainer: styled(InfiniteScroll)`
-  NewsContainer: styled.div`
-    display:flex;
-    #scroll {
+  NewsContainer: styled(InfiniteScroll)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+    .scroll {
       display:flex;
       flex-wrap: wrap;
       justify-content: center;

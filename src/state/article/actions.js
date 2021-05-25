@@ -9,6 +9,7 @@ import {
   SEARCH_NEWS_ERROR,
   SEARCH_NEWS_IN_PROGRESS,
   SEARCH_NEWS_SUCCESS,
+  SET_LOADING,
 } from './types';
 
 export const fetchTopNewsInProgress = () => ({
@@ -55,4 +56,8 @@ export const searchNewsFailure = (error) => ({
 
 export const resetSearchNews = () => ({
   type: RESET_SEARCH_NEWS,
+});
+
+export const setLoading = () => ({
+  type: SET_LOADING,
 });

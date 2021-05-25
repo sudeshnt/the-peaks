@@ -2,9 +2,9 @@ import _merge from 'lodash/merge';
 import { useCallback, useMemo, useState } from 'react';
 
 export const defaultPagination = {
-  pageSize: 15,
-  total: 0,
   page: 1,
+  pageSize: 12,
+  total: 0,
 };
 
 export default function usePagination(inputPagination) {
