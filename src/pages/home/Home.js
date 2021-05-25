@@ -6,7 +6,7 @@ import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
 import { ArticleTypes } from 'config/shared';
-import { fetchSectionNews, fetchTopNews } from 'state/article/thunks';
+import { fetchSectionNews, fetchTopNews } from 'state/news/thunks';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Home = () => {
     topNews,
     sectionNewsLoading,
     sectionNews,
-  } = useSelector((state) => state.article);
+  } = useSelector((state) => state.news);
   const { sortOrder } = useContext(AppContext);
 
   useEffect(() => {

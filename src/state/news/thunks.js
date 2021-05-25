@@ -5,10 +5,6 @@ import {
   fetchTopNewsFailure,
   fetchTopNewsInProgress,
   fetchTopNewsSuccess,
-  resetSearchNews,
-  searchNewsFailure,
-  searchNewsInProgress,
-  searchNewsSuccess,
 } from './actions';
 import * as newsApi from 'api/news';
 import { ArticlesPerSection, NewsSections, TopStoriesCount } from 'api/utils';
@@ -42,21 +38,5 @@ export const fetchSectionNews = (sortOrder) => async (dispatch) => {
     }));
   } catch (e) {
     dispatch(fetchSectionNewsFailure(e));
-  }
-};
-
-export const searchNews = (query, sortOrder, page, pageSize, reset) => async (dispatch) => {
-  try {
-    if (reset) {
-      dispatch(resetSearchNews());
-    }
-    dispatch(searchNewsInProgress());
-    const response = await newsApi.searchNews(query, sortOrder, page, pageSize);
-    dispatch(searchNewsSuccess({
-      articles: response?.data?.response?.results,
-      total: response?.data?.response?.total,
-    }));
-  } catch (e) {
-    dispatch(searchNewsFailure(e));
   }
 };

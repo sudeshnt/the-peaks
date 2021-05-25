@@ -44,7 +44,7 @@ const Article = () => {
       let articleDetails = response?.data?.response?.content;
       articleDetails = {
         ...articleDetails,
-        webPublicationDate: formatPublicationDate(
+        formattedDate: formatPublicationDate(
           moment(articleDetails.webPublicationDate),
         ),
       };
@@ -110,7 +110,7 @@ const Article = () => {
                 />
               )
             }
-            <p className="publication-date">{article.webPublicationDate}</p>
+            <p className="publication-date">{article.formattedDate}</p>
             <h1>{article.webTitle}</h1>
             {article.fields?.headline && <h3>{article.fields.headline}</h3>}
             <div className="body">

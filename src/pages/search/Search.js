@@ -1,6 +1,5 @@
 import queryString from 'query-string';
 import { useContext, useEffect, useRef } from 'react';
-// import InfiniteScroll from 'react-infinite-scroll-component';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -10,30 +9,35 @@ import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
 import usePagination from 'hooks/usePagination';
-import { setLoading } from 'state/article/actions';
-import { searchNews } from 'state/article/thunks';
+import { resetSearchNews, setLoading } from 'state/search/actions';
+import { searchNews } from 'state/search/thunks';
 
 const Search = () => {
-  const { NewsContainer, ArticleContainer } = Styled;
+  const { NewsContainer, ArticleContainer, LoaderComponent } = Styled;
   const location = useLocation();
   const dispatch = useDispatch();
   const {
-    items: news,
+    searchResults: news,
     loading,
     totalItems,
-  } = useSelector((state) => state.article);
+  } = useSelector((state) => state.search);
   const { sortOrder } = useContext(AppContext);
+
   const {
     page,
     pageSize,
     onPageChange,
-    // total,
   } = usePagination({
     total: totalItems,
   });
 
   useEffect(() => {
-    search();
+    const { q } = queryString.parse(location.search);
+    if (q) {
+      search();
+    } else {
+      dispatch(resetSearchNews());
+    }
   }, [location.search]);
 
   const initialRender = useRef(true);
@@ -63,24 +67,19 @@ const Search = () => {
     onPageChange(page + 1);
   };
 
-  const LoaderComponent = () => (
-    <div style={{ minWidth: '1vw' }}>
-      <Loader />
-    </div>
-  );
-
   return (
     <div className="page-content">
       <SubHeader title="Search Results" />
       <section>
-        { loading && <Loader /> }
         <NewsContainer
           initialLoad={false}
           pageStart={1}
           loadMore={onReachPageEnd}
-          hasMore={!loading}
+          hasMore={!loading && news.length < totalItems}
           loader={(
-            <LoaderComponent key={1} />
+            <LoaderComponent key="loader">
+              <Loader />
+            </LoaderComponent>
           )}
         >
           <div className="scroll" key={2}>
@@ -118,6 +117,8 @@ const Styled = {
     padding: 10px;
     max-width: 300px;
     height: 300px;
+  `,
+  LoaderComponent: styled.div`
   `,
 };
 

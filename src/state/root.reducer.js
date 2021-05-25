@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import article from 'state/article/reducer';
 import bookmark from 'state/bookmark/reducer';
+import news from 'state/news/reducer';
+import search from 'state/search/reducer';
 
 const rootReducer = combineReducers({
-  article,
+  news,
+  search,
   bookmark,
 });
 
