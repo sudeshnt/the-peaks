@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { SnackBarContainer } from './styles';
+import { SnackBarContainer } from './styled';
 import images from 'assets/images';
 import { ToastTypes } from 'config/shared';
 

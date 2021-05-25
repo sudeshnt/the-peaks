@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SectionNewsContainer, TopStoriesContainer } from './styles';
+import { SectionNewsContainer, TopStoriesContainer } from './styled';
 import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';

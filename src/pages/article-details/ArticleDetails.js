@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import moment from 'moment';
-import { rgba } from 'polished';
 import {
   useEffect, useMemo, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import { NewsContainer } from './styled';
 import * as newsApi from 'api/news';
 import images from 'assets/images';
 import Button from 'components/common/button/Button';
@@ -92,7 +91,7 @@ const Article = () => {
         {
           article
           && (
-          <Styled.NewsContainer>
+          <NewsContainer>
             {
               bookmarkedStatus ? (
                 <Button
@@ -133,71 +132,12 @@ const Article = () => {
               }
             </div>
             <Toast {...toast} />
-          </Styled.NewsContainer>
+          </NewsContainer>
           )
         }
       </section>
     </div>
   );
-};
-
-const Styled = {
-  NewsContainer: styled.div`
-
-    .publication-date {
-      font-family: 'Roboto';
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 31px;
-      letter-spacing: 0.83px;
-    }
-
-    h1, h2, h3 {
-      font-weight: 700;
-      letter-spacing: 0.07px;
-      margin: 0 0 10px 0;
-    }
-
-    h1 {
-      font-size: 34px;
-      line-height: 39px;
-    }
-
-    h2 {
-      font-size: 20px;
-      line-height: 26px;
-    }
-
-    hr {
-      border-top: 1px solid ${rgba('#979797', 0.1)};
-    }
-
-    .body {
-      display: flex;
-      flex-wrap: wrap;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-
-      .article {
-        flex: 2;
-        flex-direction: column;
-      }
-      
-      .image {
-        flex: 1 0 300px;
-        align-items: center;
-        padding: 8px 0 0 2.5rem;
-
-        p {
-          font-size: 12px;
-          font-weight: 400;
-        }
-      }
-    }
-  `,
 };
 
 export default Article;

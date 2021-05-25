@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { StyledLogo } from './styles';
+import { StyledLogo } from './styled';
 import images from 'assets/images';
 import SearchBox from 'components/common/search-box/SearchBox';
 import URLS from 'config/urls';

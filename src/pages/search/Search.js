@@ -1,9 +1,8 @@
 import queryString from 'query-string';
 import { useContext, useEffect, useRef } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import { ArticleContainer, LoaderComponent, NewsContainer } from './styled';
 import AppContext from 'AppContext';
 import Article from 'components/article/Article';
 import Loader from 'components/common/loader/Loader';
@@ -13,7 +12,6 @@ import { resetSearchNews, setLoading } from 'state/search/actions';
 import { searchNews } from 'state/search/thunks';
 
 const Search = () => {
-  const { NewsContainer, ArticleContainer, LoaderComponent } = Styled;
   const location = useLocation();
   const dispatch = useDispatch();
   const {
@@ -98,28 +96,6 @@ const Search = () => {
       </section>
     </div>
   );
-};
-
-const Styled = {
-  NewsContainer: styled(InfiniteScroll)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-    .scroll {
-      display:flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  `,
-  ArticleContainer: styled.div`
-    flex: 1 0 300px;
-    padding: 10px;
-    max-width: 300px;
-    height: 300px;
-  `,
-  LoaderComponent: styled.div`
-  `,
 };
 
 export default Search;
