@@ -6,11 +6,12 @@ export const RightContainer = styled.div`
   padding: 20px 0;
   align-items: flex-end;
 
-  .bookmarks-btn {
-    margin: 10px
+  .btn {
+    flex: 1;
+    margin: 0 10px;
   }
 
   .order-picker {
-    margin-top: 10px;
+    flex: 1;
   };
 `;
