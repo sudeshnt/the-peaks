@@ -3,10 +3,10 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import Header from './components/common/header/Header';
 import { ThemeSwitcher } from 'App.styled';
 import AppContext from 'AppContext';
 import images from 'assets/images';
+import Header from 'components/header/Header';
 import { SortOrders, StorageKeys } from 'config/shared';
 import Router from 'Router';
 import GlobalStyles from 'styles/globalStyles';
@@ -51,7 +51,7 @@ function App() {
           </AppContext.Provider>
         </BrowserRouter>
         <ThemeSwitcher onClick={onToggleTheme}>
-          <img src={images.crossIcon} alt="" />
+          <img src={images.themeSwitch} alt="" />
         </ThemeSwitcher>
       </ThemeProvider>
     </div>

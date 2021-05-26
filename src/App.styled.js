@@ -46,6 +46,7 @@ export const SubHeaderContainer = styled(HeaderBase)`
   height: auto;
   background: ${({ theme }) => theme.colors.background};
   padding: 5px 80px;
+  box-shadow: 0 0px 11px 0 ${({ theme }) => theme.colors.shadow};
 
   .page-content {
     display: flex;
@@ -73,7 +74,7 @@ export const ThemeSwitcher = styled.button`
   right: 10px;
   width: 50px;
   height: 50px;
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   border-radius: 30px;
   padding: 6px;
   z-index: 5;
