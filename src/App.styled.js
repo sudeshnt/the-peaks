@@ -70,7 +70,7 @@ export const ThemeSwitcher = styled.button`
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 50px;
+  bottom: 10px;
   right: 10px;
   width: 50px;
   height: 50px;

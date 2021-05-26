@@ -4,7 +4,6 @@ export const TopStoriesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: -5px;
-  width: 100%;
   
   ${({ loading }) => {
     if (loading) {
@@ -41,6 +40,10 @@ export const TopStoriesContainer = styled.div`
 
       .bottom {
         height: 120px;
+
+        @media (max-width: 570px) {
+          height: 240px !important;
+        }
       }
 
       .column {

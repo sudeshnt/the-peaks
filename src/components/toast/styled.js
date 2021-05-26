@@ -31,8 +31,7 @@ export const SnackBarContainer = styled.div`
   }
 
   &.show {
-    ${
-  ({ visible }) => (
+    ${({ visible }) => (
     visible ? {
       'animation': 'fadein 0.5s, fadeout 0.5s 2.5s',
     } : {
@@ -40,7 +39,6 @@ export const SnackBarContainer = styled.div`
     }
   )
 }
-    /* animation: fadein 0.5s, fadeout 0.5s 2.5s; */
   }
   
   @keyframes fadein {

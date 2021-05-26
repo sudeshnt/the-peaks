@@ -105,6 +105,7 @@ const ArticleDetailsPage = () => {
                   icon={images.bookmarkOnIcon}
                   onClick={onRemoveBookmark}
                   loading={bookMarking}
+                  disabled={bookMarking}
                 />
               ) : (
                 <Button
@@ -112,6 +113,7 @@ const ArticleDetailsPage = () => {
                   icon={images.bookmarkOffIcon}
                   onClick={onAddBookmark}
                   loading={bookMarking}
+                  disabled={bookMarking}
                 />
               )
             }
