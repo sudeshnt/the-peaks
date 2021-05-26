@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link 1`] = `
+<div
+  class="app"
+>
+  <header
+    class="sc-gtsrHT sc-dlnjwi kUIPJQ gSmzIp app-header"
+  >
+    <div
+      class="content"
+    >
+      <div
+        class="header-logo"
+      >
+        <img
+          class="sc-bdnxRM enAzuc"
+          src="logo.png"
+        />
+      </div>
+      <div
+        class="search-box"
+      >
+        <div
+          class="sc-jSFjdj kzmeaT"
+        >
+          <div
+            class="input-container"
+          >
+            <input
+              placeholder="Search all news"
+              value=""
+            />
+          </div>
+          <button
+            class="search-button"
+            type="button"
+          >
+            <img
+              alt=""
+              src="search-icon.svg"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div
+    class="content"
+  >
+    <div
+      class="page-content"
+    >
+      <header
+        class="sc-gtsrHT sc-hKFxyN kUIPJQ hWqlPC app-sub-header"
+      >
+        <div
+          class="content"
+        >
+          <h1>
+            Top Stories
+          </h1>
+          <div
+            class="sc-fnVZcZ bhYitd right-container"
+          >
+            <button
+              class="sc-fujyAs gpavy btn"
+            >
+              <img
+                alt=""
+                src="bookmarkon-icon.svg"
+              />
+              <span>
+                view bookmarks
+              </span>
+            </button>
+            <select
+              class="order-picker"
+            >
+              <option
+                value="newest"
+              >
+                Newest First
+              </option>
+              <option
+                value="oldest"
+              >
+                Oldest First
+              </option>
+            </select>
+          </div>
+        </div>
+      </header>
+      <section>
+        <div
+          class="sc-fFSPTT kjoPor"
+          loading="0"
+        >
+          <div
+            class="column left"
+          >
+            <div
+              class="sc-iqAclL fqrKRI article"
+              type="WITH_TITLE_THUMBNAIL_AND_DESCRIPTION"
+            >
+              <div
+                class="sc-crzoAE gyEmEE"
+              >
+                <img
+                  alt=""
+                  src="logo.png"
+                />
+              </div>
+              <div
+                class="sc-dIsUp kRYAA-d"
+              >
+                <div
+                  class="sc-bqGGPW fEjmCQ"
+                />
+                <div
+                  class="sc-ksluID koOAYW"
+                >
+                  <div />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="column right"
+          >
+            <div
+              class="top"
+            >
+              <div
+                class="column"
+              >
+                <div
+                  class="sc-iqAclL fqrKRI article"
+                  type="WITH_TITLE_THUMBNAIL_AND_DESCRIPTION"
+                >
+                  <div
+                    class="sc-crzoAE gyEmEE"
+                  >
+                    <img
+                      alt=""
+                      src="logo.png"
+                    />
+                  </div>
+                  <div
+                    class="sc-dIsUp kRYAA-d"
+                  >
+                    <div
+                      class="sc-bqGGPW fEjmCQ"
+                    />
+                    <div
+                      class="sc-ksluID koOAYW"
+                    >
+                      <div />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="column"
+              >
+                <div
+                  class="sc-iqAclL dsyUuF article"
+                  type="WITH_TITLE_THUMBNAIL_AND_DESCRIPTION"
+                >
+                  <div
+                    class="sc-crzoAE gyEmEE"
+                  >
+                    <img
+                      alt=""
+                      src="logo.png"
+                    />
+                  </div>
+                  <div
+                    class="sc-dIsUp kRYAA-d"
+                  >
+                    <div
+                      class="sc-bqGGPW fEjmCQ"
+                    />
+                    <div
+                      class="sc-ksluID koOAYW"
+                    >
+                      <div />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bottom"
+            >
+              <div
+                class="column"
+              >
+                <div
+                  class="sc-iqAclL fJJufk article"
+                  type="WITH_TITLE"
+                >
+                  <div
+                    class="sc-dIsUp kRYAA-d"
+                  >
+                    <div
+                      class="sc-bqGGPW fEjmCQ"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="column"
+              >
+                <div
+                  class="sc-iqAclL hfnpVg article"
+                  type="WITH_TITLE"
+                >
+                  <div
+                    class="sc-dIsUp kRYAA-d"
+                  >
+                    <div
+                      class="sc-bqGGPW fEjmCQ"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-bkbkJK jBjwII"
+          loading="0"
+        />
+      </section>
+    </div>
+  </div>
+  <button
+    class="sc-eCApnc fOzRso"
+  >
+    <img
+      alt=""
+      src="close-icon.svg"
+    />
+  </button>
+</div>
+`;

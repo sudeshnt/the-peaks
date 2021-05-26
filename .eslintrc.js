@@ -38,6 +38,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/forbid-prop-types': 'off',
     'quote-props': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'import/order': [
       'warn',
       {
