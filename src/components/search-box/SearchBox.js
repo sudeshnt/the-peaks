@@ -15,6 +15,7 @@ const SearchBox = () => {
   const searchBoxRef = useRef();
   const inputRef = useRef();
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
+
   useOutsideClickDetector(searchBoxRef, () => {
     if (searchCollapsed) {
       setSearchCollapsed(true);
@@ -32,14 +33,17 @@ const SearchBox = () => {
     }
   }, [location.search]);
 
+  const initialRender = useRef(true);
   useEffect(
     () => {
-      if (debouncedSearchQuery) {
-        history.replace({
-          pathname: URLS.SEARCH,
-          search: `?q=${encodeURIComponent(debouncedSearchQuery)}`,
-        });
+      if (initialRender.current) {
+        initialRender.current = false;
+        return;
       }
+      history.replace({
+        pathname: URLS.SEARCH,
+        search: `?q=${encodeURIComponent(debouncedSearchQuery)}`,
+      });
     },
     [debouncedSearchQuery],
   );
@@ -51,8 +55,11 @@ const SearchBox = () => {
   const onPress = () => {
     if (!searchCollapsed) {
       setSearchQuery('');
-      if (location.pathname !== URLS.HOME) {
-        history.push(URLS.HOME);
+      if (location.pathname === URLS.SEARCH) {
+        history.replace({
+          pathname: URLS.SEARCH,
+          search: '?q=',
+        });
       }
     } else {
       inputRef.current.focus();

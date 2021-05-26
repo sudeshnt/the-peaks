@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   BrowserRouter,
 } from 'react-router-dom';
@@ -7,24 +6,14 @@ import { ThemeSwitcher } from 'App.styled';
 import AppContext from 'AppContext';
 import images from 'assets/images';
 import Header from 'components/header/Header';
-import { SortOrders, StorageKeys } from 'config/shared';
+import useSortOrder from 'hooks/useSortOrder';
 import Router from 'Router';
 import GlobalStyles from 'styles/globalStyles';
 import { Themes, useTheme } from 'styles/theme/useTheme';
 
 function App() {
   const { theme, themeName, changeTheme } = useTheme();
-
-  const [sortOrder, setSortOrder] = useState(() => {
-    const order = localStorage.getItem(StorageKeys.SORT_ORDER);
-    // eslint-disable-next-line no-unused-vars
-    const sortOrderValid = Object.entries(SortOrders).some(([id, { key }]) => key === order);
-    if (sortOrderValid) {
-      return order;
-    }
-    localStorage.setItem(StorageKeys.SORT_ORDER, SortOrders.NEWEST_FIRST.key);
-    return SortOrders.NEWEST_FIRST.key;
-  });
+  const { sortOrder, setSortOrder } = useSortOrder();
 
   const onToggleTheme = () => {
     if (themeName === Themes.LIGHT) {

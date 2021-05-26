@@ -33,7 +33,8 @@ const SearchPage = () => {
   useEffect(() => {
     const { q } = queryString.parse(location.search);
     if (q) {
-      search();
+      dispatch(setLoading());
+      onPageChange(1, 0);
     } else {
       dispatch(resetSearchNews());
     }
@@ -45,13 +46,12 @@ const SearchPage = () => {
       initialRender.current = false;
       return;
     }
-    search();
+    dispatch(setLoading());
+    onPageChange(1, 0);
   }, [sortOrder]);
 
   useEffect(() => {
-    if (page > 1) {
-      search(false);
-    }
+    search(page === 1);
   }, [page]);
 
   const search = (reset = true) => {
