@@ -70,8 +70,9 @@ const SearchPage = () => {
     <div className="page-content">
       <SubHeader title="Search Results" />
       <section>
+        { loading && <Loader /> }
         {
-          !loading && news?.length > 0 ? (
+          loading || news?.length > 0 ? (
             <NewsContainer
               initialLoad={false}
               pageStart={1}

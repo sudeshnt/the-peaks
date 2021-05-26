@@ -29,7 +29,7 @@ const SubHeader = ({
     <header className="app-sub-header">
       <div className="content">
         <h1>{title}</h1>
-        <RightContainer>
+        <RightContainer className="right-container">
           {
             location.pathname !== URLS.BOOKMARKS
             && (
@@ -41,7 +41,7 @@ const SubHeader = ({
             />
             )
           }
-          <select value={sortOrder} onChange={onOrderChanged}>
+          <select className="order-picker" value={sortOrder} onChange={onOrderChanged}>
             {
               Object.entries(SortOrders).map(([key, order]) => (
                 <option key={key} value={order.key}>{order.name}</option>
