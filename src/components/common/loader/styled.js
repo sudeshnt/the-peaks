@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const LoaderContainer = styled.div`
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
 
   @keyframes ring {
     0% {
@@ -19,13 +19,12 @@ export const LoaderContainer = styled.div`
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 5px solid #09357B;
+    width: ${({ width }) => `${width}px`};
+    height: ${({ height }) => `${height}px`};
+    border: ${({ height }) => `${height / 10}px`} solid ${({ color }) => color};
     border-radius: 50%;
     animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #09357B transparent transparent transparent;
+    border-color: ${({ color }) => color} transparent transparent transparent;
 
     &:nth-child(1) {
       animation-delay: -0.45s;

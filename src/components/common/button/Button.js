@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Loader from '../loader/Loader';
 import { ButtonContainer } from './styles';
 
 const Button = ({
@@ -6,9 +7,10 @@ const Button = ({
   title,
   onClick,
   disabled,
+  loading,
 }) => (
   <ButtonContainer className="btn" onClick={onClick} disabled={disabled}>
-    <img src={icon} alt="" />
+    {loading ? <Loader className="loader" color="#fff" width={15} height={15} /> : <img src={icon} alt="" />}
     <span>{title}</span>
   </ButtonContainer>
 );
@@ -18,6 +20,7 @@ Button.propTypes = {
   title: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default Button;

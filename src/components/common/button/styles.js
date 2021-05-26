@@ -17,4 +17,9 @@ export const ButtonContainer = styled.button`
     line-height: 22px;
     letter-spacing: 0.3px;
   }
+
+  .loader {
+    width: 15px;
+    height: 15px;
+  }
 `;
