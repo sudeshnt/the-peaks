@@ -15,7 +15,7 @@ const Loader = ({
 );
 
 Loader.propTypes = {
-  type: PropTypes.oneOf(Object.keys(LoaderTypes)),
+  type: PropTypes.oneOf([LoaderTypes.LIGHT, LoaderTypes.DARK]),
   width: PropTypes.number,
   height: PropTypes.number,
 };
