@@ -8,7 +8,7 @@ import SubHeader from 'components/common/sub-header/SubHeader';
 import { ArticleTypes } from 'config/shared';
 import { fetchSectionNews, fetchTopNews } from 'state/news/thunks';
 
-const Home = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   const {
     topNewsLoading,
@@ -105,4 +105,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

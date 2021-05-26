@@ -5,13 +5,14 @@ import { useLocation } from 'react-router-dom';
 import { ArticleContainer, LoaderComponent, NewsContainer } from './styled';
 import AppContext from 'AppContext';
 import Article from 'components/article/Article';
+import EmptyResults from 'components/common/empty-results/EmptyResults';
 import Loader from 'components/common/loader/Loader';
 import SubHeader from 'components/common/sub-header/SubHeader';
 import usePagination from 'hooks/usePagination';
 import { resetSearchNews, setLoading } from 'state/search/actions';
 import { searchNews } from 'state/search/thunks';
 
-const Search = () => {
+const SearchPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const {
@@ -69,33 +70,40 @@ const Search = () => {
     <div className="page-content">
       <SubHeader title="Search Results" />
       <section>
-        <NewsContainer
-          initialLoad={false}
-          pageStart={1}
-          loadMore={onReachPageEnd}
-          hasMore={!loading && news.length < totalItems}
-          loader={(
-            <LoaderComponent key="loader">
-              <Loader />
-            </LoaderComponent>
-          )}
-        >
-          <div className="scroll" key="item-container">
-            {
-              news?.map((article, index) => (
-                <ArticleContainer key={article.id + Math.random()}>
-                  <Article
-                    article={article}
-                    index={index}
-                  />
-                </ArticleContainer>
-              ))
-            }
-          </div>
-        </NewsContainer>
+        {
+          !loading && news?.length > 0 ? (
+            <NewsContainer
+              initialLoad={false}
+              pageStart={1}
+              loadMore={onReachPageEnd}
+              hasMore={!loading && news.length < totalItems}
+              loader={(
+                <LoaderComponent key="loader">
+                  <Loader />
+                </LoaderComponent>
+              )}
+            >
+              <div className="scroll" key="item-container">
+                {
+                  news?.map((article, index) => (
+                    <ArticleContainer key={article.id + Math.random()}>
+                      <Article
+                        article={article}
+                        index={index}
+                      />
+                    </ArticleContainer>
+                  ))
+                }
+              </div>
+            </NewsContainer>
+          ) : (
+            <EmptyResults text="Search results empty" />
+          )
+        }
+
       </section>
     </div>
   );
 };
 
-export default Search;
+export default SearchPage;

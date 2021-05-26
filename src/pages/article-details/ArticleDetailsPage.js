@@ -9,18 +9,19 @@ import { NewsContainer } from './styled';
 import * as newsApi from 'api/news';
 import images from 'assets/images';
 import Button from 'components/common/button/Button';
+import Loader from 'components/common/loader/Loader';
 import Toast, { Toasts } from 'components/common/toast/Toast';
 import { DaysOfWeek } from 'config/shared';
 import { addBookmark, fetchBookmarks, removeBookmark } from 'state/bookmark/thunk';
 
-const Article = () => {
+const ArticleDetailsPage = () => {
   const dispatch = useDispatch();
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [bookmarkedStatus, setBookmarkedStatus] = useState(false);
-  const [toast, setToast] = useState({
-    ...Toasts.BOOKMARK_ADDED,
-  });
+  const [toast, setToast] = useState(Toasts.BOOKMARK_ADDED);
+  const [loading, setLoading] = useState(false);
+  const [bookMarking, setBookMarking] = useState(false);
 
   const bookmarks = useSelector((state) => state.bookmark.items);
   const decodedArticleId = useMemo(() => decodeURIComponent(articleId), [articleId]);
@@ -38,6 +39,7 @@ const Article = () => {
 
   const fetchArticleDetails = async (id) => {
     try {
+      setLoading(true);
       const response = await newsApi.newsDetails(id);
       let articleDetails = response?.data?.response?.content;
       articleDetails = {
@@ -50,6 +52,8 @@ const Article = () => {
     } catch (e) {
       // eslint-disable-next-line
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,9 +77,11 @@ const Article = () => {
   };
 
   const showToast = (type) => {
+    setBookMarking(true);
     setToast({ visible: true, ...type });
     setTimeout(() => {
       setToast({ visible: false, ...type });
+      setBookMarking(false);
     }, 2900);
   };
 
@@ -87,6 +93,7 @@ const Article = () => {
   return (
     <div className="page-content">
       <section>
+        {loading && <Loader />}
         {
           article
           && (
@@ -97,14 +104,14 @@ const Article = () => {
                   title="remove bookmark"
                   icon={images.bookmarkOnIcon}
                   onClick={onRemoveBookmark}
-                  disabled={toast.visible}
+                  loading={bookMarking}
                 />
               ) : (
                 <Button
                   title="add bookmark"
                   icon={images.bookmarkOffIcon}
                   onClick={onAddBookmark}
-                  disabled={toast.visible}
+                  loading={bookMarking}
                 />
               )
             }
@@ -139,4 +146,4 @@ const Article = () => {
   );
 };
 
-export default Article;
+export default ArticleDetailsPage;
