@@ -1,16 +1,12 @@
 import './App.scss';
 import React, { useState } from 'react';
 import {
-  Redirect, Route, BrowserRouter as Router, Switch,
+  BrowserRouter,
 } from 'react-router-dom';
 import Header from './components/common/header/Header';
-import URLS from './config/urls';
-import ArticleDetails from './pages/article-details/ArticleDetails';
-import Bookmarks from './pages/bookmarks/Bookmarks';
-import Home from './pages/home/Home';
-import Search from './pages/search/Search';
 import AppContext from 'AppContext';
 import { SortOrders, StorageKeys } from 'config/shared';
+import Router from 'Router';
 
 function App() {
   const [sortOrder, setSortOrder] = useState(() => {
@@ -26,7 +22,7 @@ function App() {
 
   return (
     <div className="app">
-      <Router>
+      <BrowserRouter>
         <Header />
         <AppContext.Provider value={{
           sortOrder,
@@ -34,29 +30,10 @@ function App() {
         }}
         >
           <div className="content">
-            <Switch>
-              <Route path={URLS.HOME}>
-                <Home />
-              </Route>
-              <Route path={URLS.SEARCH}>
-                <Search />
-              </Route>
-              <Route path={`${URLS.ARTICLE}/:articleId`}>
-                <ArticleDetails />
-              </Route>
-              <Route path={URLS.BOOKMARKS}>
-                <Bookmarks />
-              </Route>
-              <Route path="/">
-                <Redirect to={URLS.HOME} />
-              </Route>
-              <Route path="*">
-                Page Not Found
-              </Route>
-            </Switch>
+            <Router />
           </div>
         </AppContext.Provider>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
