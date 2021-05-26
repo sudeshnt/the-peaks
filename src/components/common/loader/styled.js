@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 
+export const LoaderTypes = Object.freeze({
+  LIGHT: 'light',
+  DARK: 'dark',
+});
+
+const getLoaderColor = (theme, type) => {
+  switch (type) {
+    case LoaderTypes.DARK:
+      return theme?.colors.loaderPrimary;
+    case LoaderTypes.LIGHT:
+      return theme?.colors.loaderSecondary;
+    default:
+      return theme?.colors.loaderPrimary;
+  }
+};
+
 export const LoaderContainer = styled.div`
   display: inline-block;
   position: relative;
@@ -21,10 +37,10 @@ export const LoaderContainer = styled.div`
     position: absolute;
     width: ${({ width }) => `${width}px`};
     height: ${({ height }) => `${height}px`};
-    border: ${({ height }) => `${height / 10}px`} solid ${({ color }) => color};
+    border: ${({ height }) => `${height / 10}px`} solid ${({ theme, type }) => getLoaderColor(theme, type)};
     border-radius: 50%;
     animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${({ color }) => color} transparent transparent transparent;
+    border-color: ${({ theme, type }) => getLoaderColor(theme, type)} transparent transparent transparent;
 
     &:nth-child(1) {
       animation-delay: -0.45s;

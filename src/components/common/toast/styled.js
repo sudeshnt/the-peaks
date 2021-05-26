@@ -9,8 +9,10 @@ export const SnackBarContainer = styled.div`
   z-index: 3;
   padding: 14px;
   border-radius: 4px;
-  color: #fff;
-  background-color: ${(({ type }) => (type === ToastTypes.SUCCESS ? '#388E3C' : '#D32F2F'))};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  background-color: ${(({ type, theme }) => (
+    type === ToastTypes.SUCCESS ? theme.colors.success : theme.colors.error)
+  )};
   min-width: 224px;
   display: flex;
   align-items: center;
@@ -29,7 +31,16 @@ export const SnackBarContainer = styled.div`
   }
 
   &.show {
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    ${
+  ({ visible }) => (
+    visible ? {
+      'animation': 'fadein 0.5s, fadeout 0.5s 2.5s',
+    } : {
+      'animation': '0s',
+    }
+  )
+}
+    /* animation: fadein 0.5s, fadeout 0.5s 2.5s; */
   }
   
   @keyframes fadein {

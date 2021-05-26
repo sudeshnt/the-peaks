@@ -11,7 +11,7 @@ import SubHeader from 'components/common/sub-header/SubHeader';
 import { sortBookmarks } from 'state/bookmark/actions';
 import { fetchBookmarks } from 'state/bookmark/thunk';
 
-const Bookmarkspage = () => {
+const BookmarksPage = () => {
   const dispatch = useDispatch();
   const { items: bookmarks, loading } = useSelector((state) => state.bookmark);
   const { sortOrder } = useContext(AppContext);
@@ -49,4 +49,4 @@ const Bookmarkspage = () => {
   );
 };
 
-export default Bookmarkspage;
+export default BookmarksPage;

@@ -24,9 +24,11 @@ const SearchBox = () => {
   useEffect(() => {
     const { q } = queryString.parse(location.search);
     setSearchQuery(q || '');
-    if (searchCollapsed) {
-      setSearchCollapsed(false);
-      inputRef.current.focus();
+    if (q) {
+      if (searchCollapsed) {
+        setSearchCollapsed(false);
+        inputRef.current.focus();
+      }
     }
   }, [location.search]);
 

@@ -27,7 +27,7 @@ export const NewsContainer = styled.div`
   }
 
   hr {
-    border-top: 1px solid ${rgba('#979797', 0.1)};
+    border-top: 1px solid ${({ theme }) => rgba(theme.colors.divider, 0.1)};
   }
 
   .body {

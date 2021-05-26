@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: ${({ collapsed }) => (collapsed ? '#09357B' : '#2153A3')};
+  background-color: ${({ collapsed, theme: { colors } }) => (
+    collapsed ? colors.primary : colors.tertiary
+  )};
   padding: 5px 10px;
   border-radius: 4px 4px 0 0;
 
@@ -15,13 +17,15 @@ export const SearchContainer = styled.div`
       padding: 8px;
       width: 100%;
       box-sizing: border-box;
-      background-color: ${({ collapsed }) => (collapsed ? '#09357B' : '#2153A3')};
+      background-color: ${({ collapsed, theme: { colors } }) => (collapsed
+    ? colors.primary : colors.tertiary
+  )};
       border: 0;
       outline: none;
-      color: white;
+      color: ${({ theme }) => theme.colors.textSecondary};
 
       &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: white;
+        color: ${({ theme }) => theme.colors.textSecondary};
         opacity: ${({ collapsed }) => (collapsed ? 0 : 0.5)};
         transition: opacity 0.5s;
       }
@@ -32,10 +36,6 @@ export const SearchContainer = styled.div`
     cursor: pointer;
     background: transparent;
     border: none;
-
-    &:hover {
-      /* background: white; */
-    }
 
     img {
       width: 20px;

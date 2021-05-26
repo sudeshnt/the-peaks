@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { RightContainer } from './styled';
+import { SubHeaderContainer } from 'App.styled';
 import AppContext from 'AppContext';
 import images from 'assets/images';
 import Button from 'components/common/button/Button';
@@ -26,7 +27,7 @@ const SubHeader = ({
   };
 
   return (
-    <header className="app-sub-header">
+    <SubHeaderContainer className="app-sub-header">
       <div className="content">
         <h1>{title}</h1>
         <RightContainer className="right-container">
@@ -50,7 +51,7 @@ const SubHeader = ({
           </select>
         </RightContainer>
       </div>
-    </header>
+    </SubHeaderContainer>
   );
 };
 

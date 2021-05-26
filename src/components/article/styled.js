@@ -2,7 +2,7 @@ import { rgba } from 'polished';
 import styled from 'styled-components';
 import { ArticleTypes } from 'config/shared';
 
-const borderColors = [
+const articleBorderColors = [
   '#388E3C', '#D32F2F', '#FFC107', '#2196F3',
 ];
 
@@ -13,11 +13,11 @@ export const ArticleContainer = styled.div`
   box-shadow: 0 3px 5px 0 rgb(0 0 0 / 50%);
   display: flex;
   flex-direction: column;
-  color: white;
-  border-bottom: 2px solid ${({ index }) => borderColors[index % 4]};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  border-bottom: 2px solid ${({ index }) => articleBorderColors[index % 4]};
   cursor: pointer;
   box-sizing: border-box;
-  background: #0D47A1;
+  background: ${({ theme }) => theme.colors.secondary};
   
   &:hover {
     opacity: 0.9
@@ -43,7 +43,7 @@ export const ArticleImageContainer = styled.div`
   }
 `;
 export const ArticleBody = styled.div`
-  background: ${rgba('#09357B', 0.8)};
+  background: ${({ theme }) => rgba(theme.colors.primary, 0.9)};
   position: absolute;
   bottom: 0;
   left: 0;

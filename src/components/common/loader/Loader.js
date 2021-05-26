@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { LoaderContainer } from './styled';
+import { LoaderContainer, LoaderTypes } from './styled';
 
 const Loader = ({
-  color = '#09357B',
+  type = LoaderTypes.DARK,
   width = 64,
   height = 64,
 }) => (
-  <LoaderContainer color={color} width={width} height={height}>
+  <LoaderContainer type={type} width={width} height={height}>
     <div />
     <div />
     <div />
@@ -15,7 +15,7 @@ const Loader = ({
 );
 
 Loader.propTypes = {
-  color: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(LoaderTypes)),
   width: PropTypes.number,
   height: PropTypes.number,
 };

@@ -17,7 +17,7 @@ export const EmptyResultContainer = styled.div`
     font-family: 'Georgia';
     font-weight: 500;
     font-size: 20px;
-    color: #716b6b;
+    color: ${({ theme }) => theme.colors.textTertiary};
     margin-top: 10px;
   }
 `;

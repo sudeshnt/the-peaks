@@ -7,6 +7,7 @@ export const ArticleTypes = Object.freeze({
 export const StorageKeys = Object.freeze({
   BOOKMARKS: 'bookmarks',
   SORT_ORDER: 'sort_order',
+  THEME: 'theme',
 });
 
 export const SortOrders = Object.freeze({
