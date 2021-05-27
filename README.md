@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - If you want to use your own api key with TheGuardian open platform, After registering with
 TheGuardian place the api key in .env file in the root under the key  ```REACT_APP_API_KEY```.
+- After running the app if you want to switch the theme, press the floating button down bellow.
 
 ## Available Scripts
 

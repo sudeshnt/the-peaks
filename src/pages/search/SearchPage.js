@@ -35,6 +35,7 @@ const SearchPage = () => {
     if (q) {
       dispatch(setLoading());
       onPageChange(1, 0);
+      search();
     } else {
       dispatch(resetSearchNews());
     }
@@ -48,16 +49,19 @@ const SearchPage = () => {
     }
     dispatch(setLoading());
     onPageChange(1, 0);
+    search();
   }, [sortOrder]);
 
   useEffect(() => {
-    search(page === 1);
+    if (page > 1) {
+      search(false);
+    }
   }, [page]);
 
   const search = (reset = true) => {
     const { q: query } = queryString.parse(location.search);
     if (query) {
-      dispatch(searchNews(query, sortOrder, page, pageSize, reset));
+      dispatch(searchNews(query, sortOrder, reset ? 1 : page, pageSize, reset));
     }
   };
 

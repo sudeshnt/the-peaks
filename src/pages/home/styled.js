@@ -4,6 +4,7 @@ export const TopStoriesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: -5px;
+  width: 100%;
   
   ${({ loading }) => {
     if (loading) {
