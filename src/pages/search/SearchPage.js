@@ -5,9 +5,9 @@ import { useLocation } from 'react-router-dom';
 import { ArticleContainer, LoaderComponent, NewsContainer } from './styled';
 import AppContext from 'AppContext';
 import Article from 'components/article/Article';
-import EmptyResults from 'components/common/empty-results/EmptyResults';
-import Loader from 'components/common/loader/Loader';
-import SubHeader from 'components/common/sub-header/SubHeader';
+import EmptyResults from 'components/empty-results/EmptyResults';
+import Loader from 'components/loader/Loader';
+import SubHeader from 'components/sub-header/SubHeader';
 import usePagination from 'hooks/usePagination';
 import { resetSearchNews, setLoading } from 'state/search/actions';
 import { searchNews } from 'state/search/thunks';
@@ -33,6 +33,8 @@ const SearchPage = () => {
   useEffect(() => {
     const { q } = queryString.parse(location.search);
     if (q) {
+      dispatch(setLoading());
+      onPageChange(1, 0);
       search();
     } else {
       dispatch(resetSearchNews());
@@ -45,6 +47,8 @@ const SearchPage = () => {
       initialRender.current = false;
       return;
     }
+    dispatch(setLoading());
+    onPageChange(1, 0);
     search();
   }, [sortOrder]);
 
@@ -57,7 +61,7 @@ const SearchPage = () => {
   const search = (reset = true) => {
     const { q: query } = queryString.parse(location.search);
     if (query) {
-      dispatch(searchNews(query, sortOrder, page, pageSize, reset));
+      dispatch(searchNews(query, sortOrder, reset ? 1 : page, pageSize, reset));
     }
   };
 

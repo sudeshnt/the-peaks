@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SectionNewsContainer, TopStoriesContainer } from './styled';
 import AppContext from 'AppContext';
 import Article from 'components/article/Article';
-import Loader from 'components/common/loader/Loader';
-import SubHeader from 'components/common/sub-header/SubHeader';
+import Loader from 'components/loader/Loader';
+import SubHeader from 'components/sub-header/SubHeader';
 import { ArticleTypes } from 'config/shared';
 import { fetchSectionNews, fetchTopNews } from 'state/news/thunks';
 

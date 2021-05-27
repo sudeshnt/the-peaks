@@ -5,7 +5,7 @@ import { RightContainer } from './styled';
 import { SubHeaderContainer } from 'App.styled';
 import AppContext from 'AppContext';
 import images from 'assets/images';
-import Button from 'components/common/button/Button';
+import Button from 'components/button/Button';
 import { SortOrders, StorageKeys } from 'config/shared';
 import URLS from 'config/urls';
 

@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-
-  
-
   img {
     width: 15px !important;
   }

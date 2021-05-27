@@ -12,15 +12,15 @@ const Button = ({
 }) => (
   <ButtonContainer className="btn" onClick={onClick} disabled={disabled}>
     {
-        loading ? (
-          <Loader
-            className="loader"
-            type={LoaderTypes.LIGHT}
-            width={15}
-            height={15}
-          />
-        ) : <img src={icon} alt="" />
-      }
+      loading ? (
+        <Loader
+          className="loader"
+          type={LoaderTypes.LIGHT}
+          width={15}
+          height={15}
+        />
+      ) : <img src={icon} alt="" />
+    }
     <span>{title}</span>
   </ButtonContainer>
 );

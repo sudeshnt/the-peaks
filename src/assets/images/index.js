@@ -5,6 +5,7 @@ import crossIcon from './close-icon.svg';
 import logo from './logo.png';
 import searchResultsEmpty from './search-empty.svg';
 import searchIcon from './search-icon.svg';
+import themeSwitch from './theme-switch.png';
 
 const icons = {
   logo,
@@ -14,6 +15,7 @@ const icons = {
   crossIcon,
   searchResultsEmpty,
   bookmarksEmpty,
+  themeSwitch,
 };
 
 export default icons;

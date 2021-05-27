@@ -41,6 +41,10 @@ export const TopStoriesContainer = styled.div`
 
       .bottom {
         height: 120px;
+
+        @media (max-width: 570px) {
+          height: 240px !important;
+        }
       }
 
       .column {

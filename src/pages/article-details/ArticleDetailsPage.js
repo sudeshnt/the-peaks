@@ -8,9 +8,9 @@ import { useParams } from 'react-router-dom';
 import { NewsContainer } from './styled';
 import * as newsApi from 'api/news';
 import images from 'assets/images';
-import Button from 'components/common/button/Button';
-import Loader from 'components/common/loader/Loader';
-import Toast, { Toasts } from 'components/common/toast/Toast';
+import Button from 'components/button/Button';
+import Loader from 'components/loader/Loader';
+import Toast, { Toasts } from 'components/toast/Toast';
 import { DaysOfWeek } from 'config/shared';
 import { addBookmark, fetchBookmarks, removeBookmark } from 'state/bookmark/thunk';
 
@@ -105,6 +105,7 @@ const ArticleDetailsPage = () => {
                   icon={images.bookmarkOnIcon}
                   onClick={onRemoveBookmark}
                   loading={bookMarking}
+                  disabled={bookMarking}
                 />
               ) : (
                 <Button
@@ -112,6 +113,7 @@ const ArticleDetailsPage = () => {
                   icon={images.bookmarkOffIcon}
                   onClick={onAddBookmark}
                   loading={bookMarking}
+                  disabled={bookMarking}
                 />
               )
             }

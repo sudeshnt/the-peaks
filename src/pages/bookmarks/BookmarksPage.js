@@ -5,9 +5,9 @@ import { BookmarkContainer, BookmarksContainer } from './styled';
 import AppContext from 'AppContext';
 import images from 'assets/images';
 import Article from 'components/article/Article';
-import EmptyResults from 'components/common/empty-results/EmptyResults';
-import Loader from 'components/common/loader/Loader';
-import SubHeader from 'components/common/sub-header/SubHeader';
+import EmptyResults from 'components/empty-results/EmptyResults';
+import Loader from 'components/loader/Loader';
+import SubHeader from 'components/sub-header/SubHeader';
 import { sortBookmarks } from 'state/bookmark/actions';
 import { fetchBookmarks } from 'state/bookmark/thunk';
 

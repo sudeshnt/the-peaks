@@ -68,30 +68,48 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 450px) {
     .page-content {
       section {
         margin: 0;
         padding: 20px !important;
       }
     }
+  }
 
+  @media (max-width: 560px) {
     .app-header {
-      padding: 0 20px !important;
       height: 110px !important;
+      padding: 0 20px !important;
+
+      .content {
+        flex-direction: column;
+
+        .header-logo {
+          margin-top: 12px
+        }
+
+        .search-box {
+          margin: 0;
+        }
+      }
     }
 
     .app-sub-header {
       top: 110px !important;
+    }
+  }
 
+  @media (max-width: 696px) {
+    .app-sub-header {
       .content {
-        justify-content: center !important;
+        flex-direction: column;
       }
 
       .right-container {
         justify-content: center !important;
 
-        .bookmarks-btn {
+        .btn {
           margin: 0 !important;
         }
       }
