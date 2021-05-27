@@ -5,7 +5,7 @@ exports[`renders learn react link 1`] = `
   class="app"
 >
   <header
-    class="sc-gtsrHT sc-dlnjwi kUIPJQ gSmzIp app-header"
+    class="sc-bdnxRM sc-gtsrHT cefWAV hyeNTN app-header"
   >
     <div
       class="content"
@@ -14,7 +14,7 @@ exports[`renders learn react link 1`] = `
         class="header-logo"
       >
         <img
-          class="sc-bdnxRM enAzuc"
+          class="sc-eCApnc bRWGhl"
           src="logo.png"
         />
       </div>
@@ -52,7 +52,7 @@ exports[`renders learn react link 1`] = `
       class="page-content"
     >
       <header
-        class="sc-gtsrHT sc-hKFxyN kUIPJQ hWqlPC app-sub-header"
+        class="sc-bdnxRM sc-dlnjwi cefWAV cNcmiE app-sub-header"
       >
         <div
           class="content"
@@ -61,10 +61,10 @@ exports[`renders learn react link 1`] = `
             Top Stories
           </h1>
           <div
-            class="sc-fnVZcZ bhYitd right-container"
+            class="sc-fnVZcZ iMNxzO right-container"
           >
             <button
-              class="sc-fujyAs gpavy btn"
+              class="sc-fujyAs bRpjOM btn"
             >
               <img
                 alt=""
@@ -93,7 +93,7 @@ exports[`renders learn react link 1`] = `
       </header>
       <section>
         <div
-          class="sc-fFSPTT kjoPor"
+          class="sc-fFSPTT feVoHU"
           loading="0"
         >
           <div
@@ -236,11 +236,11 @@ exports[`renders learn react link 1`] = `
     </div>
   </div>
   <button
-    class="sc-eCApnc fOzRso"
+    class="sc-hKFxyN jSWFEa"
   >
     <img
       alt=""
-      src="close-icon.svg"
+      src="theme-switch.png"
     />
   </button>
 </div>
